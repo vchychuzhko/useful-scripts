@@ -1,0 +1,21 @@
+# Set the "require_auth" var if Host ends with "example.com"
+    SetEnvIfNoCase Host example\.com$ require_auth=true
+
+# Set the "require_auth" var if URI contains "example"
+    SetEnvIf Request_URI ^/example require_auth=true
+
+# Including htpasswd file with naming
+    AuthUserFile /home/user/private/.htpasswd
+    AuthName "Password Protected"
+    AuthType Basic
+
+# Setup a deny/allow rule depending on a variable
+    Order Deny,Allow
+    # Deny from everyone
+    Deny from all
+    # except if either of these are satisfied
+    Satisfy any
+    # 1. a valid authenticated user
+    Require valid-user
+    # or 2. the "require_auth" var is NOT set
+    Allow from env=!require_auth
