@@ -4,7 +4,7 @@ Set of tools to be used on new system setup for Ubuntu 22.04
 
 ## Running the script
 
-Automated environment installation script for Ubuntu 22.04:
+Environment installation script for Ubuntu 22.04:
 
 ```bash
 sh ubuntu_22.04.sh
@@ -28,7 +28,7 @@ Development:
 Browsers:
 - Google Chrome
 
-*Also take a look at webkit "Gnome Web" browser ([Epiphany](https://flathub.org/apps/details/org.gnome.Epiphany)).*
+*Consider installing webkit "Gnome Web" browser ([Epiphany](https://installati.one/ubuntu/22.04/epiphany-browser/)).*
 
 Editors:
 - SublimeText

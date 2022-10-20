@@ -29,6 +29,9 @@ sudo apt-get install curl -y
 # Various PHP versions
 sudo add-apt-repository ppa:ondrej/php -y
 
+# Telegram repo
+sudo add-apt-repository ppa:atareao/telegram -y
+
 # Node
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 
@@ -472,7 +475,7 @@ sudo snap install slack --classic
 
 # Install Telegram messenger
     printf "\n>>> Telegram messenger is going to be installed >>>\n"
-sudo snap install telegram-desktop --stable
+sudo apt-get install telegram -y
 
 # Install Skype messenger
     printf "\n>>> Skype messenger is going to be installed >>>\n"
