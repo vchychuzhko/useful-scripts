@@ -362,6 +362,11 @@ alias PHP74=\"sudo update-alternatives --set php /usr/bin/php7.4\"
 alias PHP80=\"sudo update-alternatives --set php /usr/bin/php8.0\"
 alias PHP81=\"sudo update-alternatives --set php /usr/bin/php8.1\"
 
+alias N12=\"sudo n 12\"
+alias N14=\"sudo n 14\"
+alias N16=\"sudo n 16\"
+alias N18=\"sudo n 18\"
+
 alias AP=\"sudo service apache2 restart\"
 alias NG=\"sudo service nginx restart\"
 
@@ -400,8 +405,12 @@ sudo npm install -g yarn
     printf "\n>>> N package is going to be installed >>>\n"
 sudo npm install -g n
 
+# Install Python 2 and essential tools for node-sass
+    printf "\n>>> Python 2 and essential tools are going to be installed >>>\n"
+sudo apt-get install python2 build-essential -y
+
 # Install ElasticSearch 7
-    printf "\n>>> JDK and ElasticSearch 7 is going to be installed >>>\n"
+    printf "\n>>> JDK and ElasticSearch 7 are going to be installed >>>\n"
 sudo apt-get install default-jre elasticsearch -y
 sudo systemctl disable elasticsearch # use /etc/elasticsearch/jvm.options to configure its memory heap size
 
