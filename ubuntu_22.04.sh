@@ -202,49 +202,49 @@ sudo apt-get install php-pear php-imagick php-memcached php-ssh2 php-xdebug --no
 # Install PHP 5.6 and modules
 #    printf "\n>>> PHP 5.6 and common modules are going to be installed >>>\n"
 #sudo apt-get install php5.6 php5.6-cli php5.6-common php5.6-json php5.6-opcache php5.6-readline --no-install-recommends -y
-#sudo apt-get install php5.6-bz2 php5.6-bcmath php5.6-curl php5.6-gd php5.6-imap php5.6-intl php5.6-mbstring php5.6-mcrypt php5.6-mysql php5.6-recode php5.6-soap php5.6-xml php5.6-xmlrpc php5.6-zip php5.6-fpm -y
+#sudo apt-get install php5.6-bz2 php5.6-bcmath php5.6-curl php5.6-gd php5.6-imap php5.6-intl php5.6-mbstring php5.6-mcrypt php5.6-mysql php5.6-recode php5.6-soap php5.6-xdebug php5.6-xml php5.6-xmlrpc php5.6-zip php5.6-fpm -y
 #sudo service php5.6-fpm enable
 
 # Install PHP 7.0 and modules, enable modules
 #    printf "\n>>> PHP 7.0 and common modules are going to be installed >>>\n"
 #sudo apt-get install php7.0 php7.0-cli php7.0-common php7.0-json php7.0-opcache php7.0-readline --no-install-recommends -y
-#sudo apt-get install php7.0-bz2 php7.0-bcmath php7.0-curl php7.0-gd php7.0-imap php7.0-intl php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-recode php7.0-soap php7.0-xml php7.0-xmlrpc php7.0-zip php7.0-fpm -y
+#sudo apt-get install php7.0-bz2 php7.0-bcmath php7.0-curl php7.0-gd php7.0-imap php7.0-intl php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-recode php7.0-soap php7.0-xdebug php7.0-xml php7.0-xmlrpc php7.0-zip php7.0-fpm -y
 #sudo service php7.0-fpm enable
 
 # Install PHP 7.1 and modules, enable modules
 #     printf "\n>>> PHP 7.1 and common modules are going to be installed >>>\n"
 # sudo apt-get install php7.1 php7.1-cli php7.1-common php7.1-json php7.1-opcache php7.1-readline --no-install-recommends -y
-# sudo apt-get install php7.1-bz2 php7.1-bcmath php7.1-curl php7.1-gd php7.1-imap php7.1-intl php7.1-mbstring php7.1-mcrypt php7.1-mysql php7.1-recode php7.1-soap php7.1-xml php7.1-xmlrpc php7.1-zip php7.1-fpm -y
+# sudo apt-get install php7.1-bz2 php7.1-bcmath php7.1-curl php7.1-gd php7.1-imap php7.1-intl php7.1-mbstring php7.1-mcrypt php7.1-mysql php7.1-recode php7.1-soap php7.1-xdebug php7.1-xml php7.1-xmlrpc php7.1-zip php7.1-fpm -y
 # sudo service php7.1-fpm enable
 
 # Install PHP 7.2 and modules, enable modules
 #    printf "\n>>> PHP 7.2 and common modules are going to be installed >>>\n"
 #sudo apt-get install php7.2 php7.2-cli php7.2-common php7.2-json php7.2-opcache php7.2-readline --no-install-recommends -y
-#sudo apt-get install php7.2-bz2 php7.2-bcmath php7.2-curl php7.2-gd php7.2-imap php7.2-intl php7.2-mbstring php7.2-mysql php7.2-recode php7.2-soap php7.2-xml php7.2-xmlrpc php7.2-zip php7.2-fpm -y
+#sudo apt-get install php7.2-bz2 php7.2-bcmath php7.2-curl php7.2-gd php7.2-imap php7.2-intl php7.2-mbstring php7.2-mysql php7.2-recode php7.2-soap php7.2-xdebug php7.2-xml php7.2-xmlrpc php7.2-zip php7.2-fpm -y
 #sudo service php7.2-fpm enable
 
 # Install PHP 7.3 and modules, enable modules
 #    printf "\n>>> PHP 7.3 and common modules are going to be installed >>>\n"
 #sudo apt-get install php7.3 php7.3-cli php7.3-common php7.3-json php7.3-opcache php7.3-readline --no-install-recommends -y
-#sudo apt-get install php7.3-bz2 php7.3-bcmath php7.3-curl php7.3-gd php7.3-imap php7.3-intl php7.3-mbstring php7.3-mysql php7.3-recode php7.3-soap php7.3-xml php7.3-xmlrpc php7.3-zip php7.3-fpm -y
+#sudo apt-get install php7.3-bz2 php7.3-bcmath php7.3-curl php7.3-gd php7.3-imap php7.3-intl php7.3-mbstring php7.3-mysql php7.3-recode php7.3-soap php7.3-xdebug php7.3-xml php7.3-xmlrpc php7.3-zip php7.3-fpm -y
 #sudo service php7.3-fpm enable
 
 # Install PHP 7.4 and modules, enable modules
     printf "\n>>> PHP 7.4 and common modules are going to be installed >>>\n"
 sudo apt-get install php7.4 php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-readline --no-install-recommends -y
-sudo apt-get install php7.4-bz2 php7.4-bcmath php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-mbstring php7.4-mysql php7.4-soap php7.4-xml php7.4-xmlrpc php7.4-zip php7.4-fpm -y
+sudo apt-get install php7.4-bz2 php7.4-bcmath php7.4-curl php7.4-gd php7.4-imap php7.4-intl php7.4-mbstring php7.4-mysql php7.4-soap php7.4-xdebug php7.4-xml php7.4-xmlrpc php7.4-zip php7.4-fpm -y
 sudo service php7.4-fpm enable
 
 # Install PHP 8.0 and modules, enable modules
     printf "\n>>> PHP 8.0 and common modules are going to be installed >>>\n"
 sudo apt-get install php8.0 php8.0-cli php8.0-common php8.0-opcache php8.0-readline --no-install-recommends -y
-sudo apt-get install php8.0-bz2 php8.0-bcmath php8.0-curl php8.0-gd php8.0-imap php8.0-intl php8.0-mbstring php8.0-mysql php8.0-soap php8.0-xml php8.0-xmlrpc php8.0-zip php8.0-fpm -y
+sudo apt-get install php8.0-bz2 php8.0-bcmath php8.0-curl php8.0-gd php8.0-imap php8.0-intl php8.0-mbstring php8.0-mysql php8.0-soap php8.0-xdebug php8.0-xml php8.0-xmlrpc php8.0-zip php8.0-fpm -y
 sudo service php8.0-fpm enable
 
 # Install PHP 8.1 and modules, enable modules
     printf "\n>>> PHP 8.1 and common modules are going to be installed >>>\n"
 sudo apt-get install php8.1 php8.1-cli php8.1-common php8.1-opcache php8.1-readline --no-install-recommends -y
-sudo apt-get install php8.1-bz2 php8.1-bcmath php8.1-curl php8.1-gd php8.1-imap php8.1-intl php8.1-mbstring php8.1-mysql php8.1-soap php8.1-xml php8.1-xmlrpc php8.1-zip php8.1-fpm -y
+sudo apt-get install php8.1-bz2 php8.1-bcmath php8.1-curl php8.1-gd php8.1-imap php8.1-intl php8.1-mbstring php8.1-mysql php8.1-soap php8.1-xdebug php8.1-xml php8.1-xmlrpc php8.1-zip php8.1-fpm -y
 sudo service php8.1-fpm enable
 
     printf "\n>>> Creating ini files for the development environment >>>\n"
@@ -398,7 +398,7 @@ sudo npm install -g n
 
 # Install ElasticSearch 7
     printf "\n>>> JDK and ElasticSearch 7 is going to be installed >>>\n"
-sudo apt-get install default-jre elasticsearch
+sudo apt-get install default-jre elasticsearch -y
 sudo systemctl disable elasticsearch # use /etc/elasticsearch/jvm.options to configure its memory heap size
 
 # Install Google Chrome
