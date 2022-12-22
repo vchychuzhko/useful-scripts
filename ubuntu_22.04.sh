@@ -329,8 +329,7 @@ sudo mv composer.phar /usr/bin/composer
 # Setup CLI settings and alias
     printf "\n>>> Creating aliases and enabling color output >>>\n"
 # XDEBUG_SESSION is important for CLI debugging
-echo "
-force_color_prompt=yes
+echo "force_color_prompt=yes
 shopt -s autocd
 set completion-ignore-case On
 
@@ -338,11 +337,16 @@ export XDEBUG_SESSION=PHPSTORM
 export XDEBUG_MODE=debug
 
 cert_function() {
-  mkdir -p ~/misc/ssl/$1
-  mkcert -key-file ~/misc/ssl/$1/$1+1-key.pem -cert-file ~/misc/ssl/$1/$1+1.pem $1 www.$1
+  mkdir -p ~/misc/ssl/\$1
+  mkcert -key-file ~/misc/ssl/\$1/\$1+1-key.pem -cert-file ~/misc/ssl/\$1/\$1+1.pem \$1 www.\$1
+}
+
+nginx_symlink_function() {
+  sudo ln -s /etc/nginx/sites-available/\$1 /etc/nginx/sites-enabled/
 }
 
 alias CERT=cert_function
+alias NGENSITE=nginx_symlink_function
 
 alias C1=\"composer self-update --1\"
 alias C2=\"composer self-update --2\"
@@ -381,7 +385,7 @@ alias CC=\"php bin/magento cache:clean\"
 alias CF=\"php bin/magento cache:flush\"
 alias RI=\"php bin/magento indexer:reindex\"
 alias RS=\"php bin/magento indexer:status\"
-" | sudo tee -a ~/.bash_aliases
+" | tee -a ~/.bash_aliases
 
 # Install Node Package Manager and Grunt tasker
     printf "\n>>> NPM and Grunt are going to be installed >>>\n"
