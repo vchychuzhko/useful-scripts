@@ -27,8 +27,7 @@ Development:
 
 Browsers:
 - Google Chrome
-
-*Consider installing webkit "Gnome Web" browser ([Epiphany](https://installati.one/ubuntu/22.04/epiphany-browser/)).*
+- Epiphany (webkit "Gnome Web" browser)
 
 Editors:
 - SublimeText
@@ -59,7 +58,7 @@ You can add shortcuts for installed programs to have immediate access.
 Add them in Settings: `Keyboard > "View and Customize Shortcuts" > "Custom Shortcuts"`
 
 | Program | Command | Suggested shortcut |
-| :---: | --- |--------------------|
+| :---: | --- | --- |
 | Diodon Clipboard Manager | `/usr/bin/diodon` | Ctrl+Alt+H |
 | Guake Terminal | `/usr/bin/guake -t` | F1 |
 

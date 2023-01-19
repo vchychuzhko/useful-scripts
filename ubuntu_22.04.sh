@@ -420,6 +420,10 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
 
+# Install Epiphany Web Browser
+    printf "\n>>> Epiphany Web Browser is going to be installed >>>\n"
+sudo apt-get install epiphany-browser -y
+
 # Install mkcert - https://github.com/FiloSottile/mkcert/releases
     printf "\n>>> mkcert are going to be installed >>>\n"
 sudo apt-get install libnss3-tools -y
