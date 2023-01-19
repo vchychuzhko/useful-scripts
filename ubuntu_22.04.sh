@@ -25,6 +25,10 @@ touch ~/Templates/Untitled\ Document
     printf "\n>>> cUrl is going to be installed >>>\n"
 sudo apt-get install curl -y
 
+# Install pv
+    printf "\n>>> pv is going to be installed >>>\n"
+ sudo apt-get install pv -y
+
     printf "\n>>> Adding repositories and updating software list >>>\n"
 # Various PHP versions
 sudo add-apt-repository ppa:ondrej/php -y

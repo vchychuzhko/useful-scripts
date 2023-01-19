@@ -78,6 +78,16 @@ else
     ...
 ```
 
+## etc
+
+### Database Deploy
+
+Use `bin/db_deploy.sh` script as a basis for pre-setup deploy scripts for database dump files.
+
+### Elasticsearch cleanup
+
+Use `bin/es_remove_unaliased.sh` script to remove old unaliased indexes from elastic database.
+
 ---
 
 ###### Inspired by [DefaultValue/ubuntu_post_install_scripts](https://github.com/DefaultValue/ubuntu_post_install_scripts)
