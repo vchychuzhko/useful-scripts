@@ -51,6 +51,34 @@ etc:
 - `htop` - process manager
 - `mc` (Midnight Commander) - console file manager
 
+## Post installation tips
+
+### Shortcuts
+
+You can add shortcuts for installed programs to have immediate access.  
+Add them in Settings: `Keyboard > "View and Customize Shortcuts" > "Custom Shortcuts"`
+
+| Program | Command | Suggested shortcut |
+| :---: | --- |--------------------|
+| Diodon Clipboard Manager | `/usr/bin/diodon` | Ctrl+Alt+H |
+| Guake Terminal | `/usr/bin/guake -t` | F1 |
+
+### Bash Profile
+
+You can customize terminal output to show current Git branch when you-re inside the repository.  
+Find and update respective block in `~/.bashrc`:
+
+```bash
+git_branch() {
+    git branch --show-current 2> /dev/null | sed -e 's/* \(.*\)/ (\1)/'
+}
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \[\033[01;35m\]$(git_branch)\[\033[00m\]\$ '
+else
+    ...
+```
+
 ---
 
 ###### Inspired by [DefaultValue/ubuntu_post_install_scripts](https://github.com/DefaultValue/ubuntu_post_install_scripts)
