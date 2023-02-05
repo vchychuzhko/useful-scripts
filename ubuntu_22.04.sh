@@ -25,16 +25,9 @@ touch ~/Templates/Untitled\ Document
     printf "\n>>> cUrl is going to be installed >>>\n"
 sudo apt install curl -y
 
-# Install pv
-    printf "\n>>> pv is going to be installed >>>\n"
- sudo apt install pv -y
-
     printf "\n>>> Adding repositories and updating software list >>>\n"
 # Various PHP versions
 sudo add-apt-repository ppa:ondrej/php -y
-
-# Telegram repo
-sudo add-apt-repository ppa:atareao/telegram -y
 
 # Node
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -392,8 +385,7 @@ alias DI=\"php bin/magento setup:di:compile\"
 alias CC=\"php bin/magento cache:clean\"
 alias CF=\"php bin/magento cache:flush\"
 alias RI=\"php bin/magento indexer:reindex\"
-alias RS=\"php bin/magento indexer:status\"
-" | tee -a ~/.bash_aliases
+alias RS=\"php bin/magento indexer:status\"" | tee -a ~/.bash_aliases
 
 # Install Node Package Manager and Grunt tasker
     printf "\n>>> NPM and Grunt are going to be installed >>>\n"
@@ -422,6 +414,18 @@ sudo systemctl disable elasticsearch # use /etc/elasticsearch/jvm.options to con
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
+
+# Reinstall Firefox - https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
+    printf "\n>>> Firefox is going to be reinstalled >>>\n"
+sudo snap remove --purge firefox
+sudo add-apt-repository ppa:mozillateam/ppa -y
+echo '
+Package: *
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
+sudo apt install firefox
 
 # Install Epiphany Web Browser
     printf "\n>>> Epiphany Web Browser is going to be installed >>>\n"
@@ -463,6 +467,10 @@ sudo apt install vim -y
     printf "\n>>> htop is going to be installed >>>\n"
 sudo apt install htop -y
 
+# Install pv
+    printf "\n>>> pv is going to be installed >>>\n"
+ sudo apt install pv -y
+
 # Install Git and Git Gui
     printf "\n>>> Git and Git Gui are going to be installed >>>\n"
 sudo apt install git git-gui -y
@@ -495,6 +503,7 @@ sudo snap install slack --classic
 
 # Install Telegram messenger
     printf "\n>>> Telegram messenger is going to be installed >>>\n"
+sudo add-apt-repository ppa:atareao/telegram -y
 sudo apt install telegram -y
 
 # Install Skype messenger
