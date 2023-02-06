@@ -16,7 +16,7 @@ sh ubuntu_22.04.sh
 
 Development:
 - Git
-- PHP (7.4-8.1)
+- PHP (7.4-8.2)
 - Composer
 - Node 18 + [n](https://www.npmjs.com/package/n) (to switch versions)
 - MySQL Client (5.6-8.0 + MariaDB 10.4)
