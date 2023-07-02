@@ -69,13 +69,21 @@ Find and update respective block in `~/.bashrc`:
 
 ```bash
 git_branch() {
-    git branch --show-current 2> /dev/null | sed -e 's/* \(.*\)/ (\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \[\033[01;35m\]$(git_branch)\[\033[00m\]\$ '
 else
     ...
+```
+
+### Dual-Boot Time Issue
+
+In case of dual-boot setup with Windows, run this command after installation to fix time sliding issue:
+
+```bash
+timedatectl set-local-rtc 1
 ```
 
 ## etc

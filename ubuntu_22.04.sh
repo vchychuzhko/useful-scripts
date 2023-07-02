@@ -184,7 +184,6 @@ sudo sed -i "s/Listen 443/Listen apache:443/g" /etc/apache2/ports.conf
 sudo sed -i "s/<VirtualHost \*:80>/<VirtualHost apache:80>/g" /etc/apache2/sites-available/000-default
 # hosts file
 echo "
-
 # Nginx-Apache parallel setup - https://stackoverflow.com/a/56379304
 127.0.0.1 nginx
 127.0.0.2 apache" | sudo tee -a /etc/hosts
@@ -309,11 +308,11 @@ echo "memory_limit=2G
 " | sudo tee -a ${IniDir}999-custom-config.ini
 done
 
-# Set default PHP version to 8.0
-    printf "Enabling PHP 8.0 by default"
-sudo update-alternatives --set php /usr/bin/php8.0
-sudo service php8.0-fpm enable
-sudo service php8.0-fpm restart
+# Set default PHP version to 8.1
+    printf "Enabling PHP 8.1 by default"
+sudo update-alternatives --set php /usr/bin/php8.1
+sudo service php8.1-fpm enable
+sudo service php8.1-fpm restart
 
     printf "\n>>> Enabling php modules: mbstring mcrypt xdebug >>>\n"
 sudo phpenmod mbstring mcrypt xdebug
@@ -370,8 +369,8 @@ alias FPM80=\"sudo service php8.0-fpm restart\"
 alias FPM81=\"sudo service php8.1-fpm restart\"
 alias FPM82=\"sudo service php8.2-fpm restart\"
 
-alias C1=\"composer self-update --1\"
-alias C2=\"composer self-update --2\"
+alias C1=\"sudo composer self-update --1\"
+alias C2=\"sudo composer self-update --2\"
 
 alias N12=\"sudo n 12\"
 alias N14=\"sudo n 14\"
@@ -433,7 +432,7 @@ Pin: release o=LP-PPA-mozillateam
 Pin-Priority: 1001
 ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
-sudo apt install firefox
+sudo apt install firefox -y
 
 # Install Epiphany Web Browser
     printf "\n>>> Epiphany Web Browser is going to be installed >>>\n"
@@ -477,7 +476,7 @@ sudo apt install htop -y
 
 # Install pv
     printf "\n>>> pv is going to be installed >>>\n"
- sudo apt install pv -y
+sudo apt install pv -y
 
 # Install Git and Git Gui
     printf "\n>>> Git and Git Gui are going to be installed >>>\n"
@@ -521,8 +520,10 @@ sudo snap install skype --classic
 # Install PhpStorm
     printf "\n>>> PhpStorm is going to be installed >>>\n"
 sudo snap install phpstorm --classic
+if ! grep -q 'fs.inotify.max_user_watches = 524288' /etc/sysctl.conf; then
     printf "\n>>> Setting filesystem parameters for PHPStorm IDE: fs.inotify.max_user_watches = 524288 >>>\n"
-echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf
+    echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf > /dev/null
+fi
 
 # Install Gnome Tweak Tool for tuning Ubuntu
     printf "\n>>> Gnome Tweak Tool is going to be installed >>>\n"
