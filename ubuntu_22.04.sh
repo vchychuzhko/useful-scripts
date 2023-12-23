@@ -402,18 +402,24 @@ alias CF=\"php bin/magento cache:flush\"
 alias RI=\"php bin/magento indexer:reindex\"
 alias RS=\"php bin/magento indexer:status\"" | tee -a ~/.bash_aliases
 
-# Install Node Package Manager and Grunt tasker
-    printf "\n>>> NPM and Grunt are going to be installed >>>\n"
+# Install Node Package Manager and set home directory as user-global folder
+    printf "\n>>> NPM is going to be installed >>>\n"
 sudo apt install nodejs -y
-sudo npm install -g grunt-cli
+mkdir ~/.npm-global
+npm config set prefix "${HOME}/.npm-global"
+echo -e "export PATH=\$PATH:~/.npm-global/bin" >> ~/.bashrc
+
+# Install Grunt tasker
+    printf "\n>>> Grunt is going to be installed >>>\n"
+npm install -g grunt-cli
 
 # Install Yarn
     printf "\n>>> Yarn is going to be installed >>>\n"
-sudo npm install -g yarn
+npm install -g yarn
 
 # Install N
     printf "\n>>> N package is going to be installed >>>\n"
-sudo npm install -g n
+npm install -g n
 
 # Install Python 2 and essential tools for node-sass
     printf "\n>>> Python 2 and essential tools are going to be installed >>>\n"
