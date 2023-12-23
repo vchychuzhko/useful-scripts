@@ -249,6 +249,12 @@ sudo apt install php8.2 php8.2-cli php8.2-common php8.2-opcache php8.2-readline 
 sudo apt install php8.2-bz2 php8.2-bcmath php8.2-curl php8.2-gd php8.2-imap php8.2-intl php8.2-mbstring php8.2-mysql php8.2-soap php8.2-xdebug php8.2-xml php8.2-xmlrpc php8.2-zip php8.2-fpm -y
 sudo service php8.2-fpm enable
 
+# Install PHP 8.3 and modules, enable modules
+    printf "\n>>> PHP 8.3 and common modules are going to be installed >>>\n"
+sudo apt install php8.3 php8.3-cli php8.3-common php8.3-opcache php8.3-readline --no-install-recommends -y
+sudo apt install php8.3-bz2 php8.3-bcmath php8.3-curl php8.3-gd php8.3-imap php8.3-intl php8.3-mbstring php8.3-mysql php8.3-soap php8.3-xdebug php8.3-xml php8.3-xmlrpc php8.3-zip php8.3-fpm -y
+sudo service php8.3-fpm enable
+
     printf "\n>>> Creating ini files for the development environment >>>\n"
 IniDirs=/etc/php/*/*/conf.d/
 for IniDir in ${IniDirs};
@@ -308,11 +314,11 @@ echo "memory_limit=2G
 " | sudo tee -a ${IniDir}999-custom-config.ini
 done
 
-# Set default PHP version to 8.1
-    printf "Enabling PHP 8.1 by default"
-sudo update-alternatives --set php /usr/bin/php8.1
-sudo service php8.1-fpm enable
-sudo service php8.1-fpm restart
+# Set default PHP version to 8.2
+    printf "Enabling PHP 8.2 by default"
+sudo update-alternatives --set php /usr/bin/php8.2
+sudo service php8.2-fpm enable
+sudo service php8.2-fpm restart
 
     printf "\n>>> Enabling php modules: mbstring mcrypt xdebug >>>\n"
 sudo phpenmod mbstring mcrypt xdebug
@@ -358,6 +364,7 @@ alias PHP74=\"sudo update-alternatives --set php /usr/bin/php7.4\"
 alias PHP80=\"sudo update-alternatives --set php /usr/bin/php8.0\"
 alias PHP81=\"sudo update-alternatives --set php /usr/bin/php8.1\"
 alias PHP82=\"sudo update-alternatives --set php /usr/bin/php8.2\"
+alias PHP83=\"sudo update-alternatives --set php /usr/bin/php8.3\"
 
 # alias FPM56=\"sudo service php5.6-fpm restart\"
 # alias FPM70=\"sudo service php7.0-fpm restart\"
@@ -368,6 +375,7 @@ alias FPM74=\"sudo service php7.4-fpm restart\"
 alias FPM80=\"sudo service php8.0-fpm restart\"
 alias FPM81=\"sudo service php8.1-fpm restart\"
 alias FPM82=\"sudo service php8.2-fpm restart\"
+alias FPM83=\"sudo service php8.3-fpm restart\"
 
 alias C1=\"sudo composer self-update --1\"
 alias C2=\"sudo composer self-update --2\"
