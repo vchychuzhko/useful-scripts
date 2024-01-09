@@ -27,6 +27,7 @@ Development:
 
 Browsers:
 - Google Chrome
+- Firefox (PPA)
 - Epiphany (webkit "Gnome Web" browser)
 
 Editors:

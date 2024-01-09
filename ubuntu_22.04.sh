@@ -36,6 +36,10 @@ curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
 echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
 
+# Sublime Text
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+
     printf "\n>>> Running Ubuntu upgrade >>>\n"
 sudo apt update
 sudo apt upgrade -y
@@ -407,7 +411,7 @@ alias RS=\"php bin/magento indexer:status\"" | tee -a ~/.bash_aliases
 sudo apt install nodejs -y
 mkdir ~/.npm-global
 npm config set prefix "${HOME}/.npm-global"
-echo -e "export PATH=\$PATH:~/.npm-global/bin" >> ~/.bashrc
+echo "export PATH=\$PATH:~/.npm-global/bin" | tee -a ~/.bashrc
 
 # Install Grunt tasker
     printf "\n>>> Grunt is going to be installed >>>\n"
@@ -436,17 +440,21 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
 
-# Reinstall Firefox - https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
+# Remove Thunderbird
+    printf "\n>>> Thunderbird is going to be removed >>>\n"
+sudo apt purge thunderbird* -y
+
+# Reinstall Firefox - https://www.debugpoint.com/remove-firefox-snap-ubuntu
     printf "\n>>> Firefox is going to be reinstalled >>>\n"
 sudo snap remove --purge firefox
-sudo add-apt-repository ppa:mozillateam/ppa -y
 echo '
-Package: *
-Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
-' | sudo tee /etc/apt/preferences.d/mozilla-firefox
-echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
+Package: firefox*
+Pin: release o=Ubuntu*
+Pin-Priority: -1
+' | sudo tee /etc/apt/preferences.d/firefox-no-snap
+sudo add-apt-repository ppa:mozillateam/ppa -y
 sudo apt install firefox -y
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 
 # Install Epiphany Web Browser
     printf "\n>>> Epiphany Web Browser is going to be installed >>>\n"
@@ -468,6 +476,10 @@ sudo apt install guake -y
     printf "\n>>> Diodon clipboard manager is going to be installed >>>\n"
 sudo apt install diodon -y
 
+# Install Sublime Text editor
+    printf "\n>>> Sublime Text is going to be installed >>>\n"
+sudo apt install sublime-text -y
+
 # Install xclip - copy output to clipboard
     printf "\n>>> xclip is going to be installed >>>\n"
 sudo apt install xclip -y
@@ -475,10 +487,6 @@ sudo apt install xclip -y
 # Install Midnight Commander
     printf "\n>>> Midnight Commander is going to be installed >>>\n"
 sudo apt install mc -y
-
-# Install Sublime Text editor
-    printf "\n>>> Sublime Text is going to be installed >>>\n"
-sudo snap install sublime-text --classic
 
 # Install Vim text editor
     printf "\n>>> Vim is going to be installed >>>\n"
@@ -516,11 +524,14 @@ sudo apt install obs-studio -y
 
 # Install KeePassXC - free encrypted password storage
     printf "\n>>> KeePassXC is going to be installed >>>\n"
-sudo snap install keepassxc
+sudo add-apt-repository ppa:phoerious/keepassxc -y
+sudo apt install keepassxc -y
 
 # Install Slack messenger
     printf "\n>>> Slack messenger is going to be installed >>>\n"
-sudo snap install slack --classic
+wget https://downloads.slack-edge.com/releases/linux/4.35.131/prod/x64/slack-desktop-4.35.131-amd64.deb
+sudo apt install ./slack-desktop-4.35.131-amd64.deb
+rm ./slack-desktop-4.35.131-amd64.deb
 
 # Install Telegram messenger
     printf "\n>>> Telegram messenger is going to be installed >>>\n"
@@ -529,11 +540,17 @@ sudo apt install telegram -y
 
 # Install Skype messenger
     printf "\n>>> Skype messenger is going to be installed >>>\n"
-sudo snap install skype --classic
+wget https://repo.skype.com/latest/skypeforlinux-64.deb
+sudo dpkg -i skypeforlinux-64.deb
+rm skypeforlinux-64.deb
 
 # Install PhpStorm
     printf "\n>>> PhpStorm is going to be installed >>>\n"
-sudo snap install phpstorm --classic
+wget https://download.jetbrains.com/webide/PhpStorm-2023.3.2.tar.gz
+mkdir PhpStorm
+tar -xvf PhpStorm-2023.3.2.tar.gz --directory=PhpStorm
+sh ./PhpStorm/*/bin/phpstorm.sh
+rm -rf PhpStorm-2023.3.2.tar.gz PhpStorm
 if ! grep -q 'fs.inotify.max_user_watches = 524288' /etc/sysctl.conf; then
     printf "\n>>> Setting filesystem parameters for PHPStorm IDE: fs.inotify.max_user_watches = 524288 >>>\n"
     echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf > /dev/null
