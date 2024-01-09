@@ -51,7 +51,7 @@ etc:
 - `htop` - process manager
 - `mc` (Midnight Commander) - console file manager
 
-## Post installation tips
+## Post-installation tips
 
 ### Shortcuts
 
@@ -87,15 +87,24 @@ In case of dual-boot setup with Windows, run this command after installation to 
 timedatectl set-local-rtc 1
 ```
 
-## etc
+## Binaries
 
 ### Database Deploy
 
-Use `bin/db_deploy.sh` script as a basis for pre-setup deploy scripts for database dump files.
+Use `bin/db_deploy.sh` script as a basis to deploy database dump files.
 
 ### Elasticsearch cleanup
 
-Use `bin/es_remove_unaliased.sh` script to remove old unaliased indexes from elastic database.
+Use `bin/es_remove_unaliased.sh` script to remove unaliased indexes from elastic database.
+
+## Laptop compatibility
+
+In order to have proper S3 state suspend, check its support via terminal:
+
+```bash
+sudo dmesg | grep -i acpi | grep supports # Linux
+powercfg /a                               # Windows
+```
 
 ---
 

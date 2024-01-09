@@ -231,9 +231,13 @@ tar --exclude='./.git' --exclude='./var/cache' --exclude='./var/report' --exclud
 tar -xvf filename.tar # extract tar archive
 gunzip -k filename.gz # extract gz archive, keeping archive file
 
-du -hs file # show size of file/folder
+du -hs ~/public_html/var/sessions # show size of a folder (or a file)
+ls -l ~/public_html/var/sessions | wc -l # show number of files in a folder
+
+du --max-depth=1 / 2>/dev/null | sort -r -k1,1n # sort directories by size with 1 level depth
+find / -size +100M -ls 2>/dev/null # find files that are larger than 100Mb
+
 find ./ -type f -name "js-translation.json" # search for the filename in current directory
-find ./ -size +10M -ls # find files that are larger than 10Mb in the current directory
 grep --exclude-dir={generated,dev,setup,pub,var,.git,.idea,node_modules} -rnw './' -e 'searched text' # search for string in files
 
 :%s/`searched_user`@`%`/`new_user`@`localhost`/gc # vim find and replace
