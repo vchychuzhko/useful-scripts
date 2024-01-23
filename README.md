@@ -87,6 +87,17 @@ In case of dual-boot setup with Windows, run this command after installation to 
 timedatectl set-local-rtc 1
 ```
 
+### X11 Gestures
+
+By default 3-finger gestures are not available in X11 session. To enable them install [X11 Gestures](https://extensions.gnome.org/extension/4033/x11-gestures/) extension.
+
+[Touchegg](https://github.com/JoseExposito/touchegg?tab=readme-ov-file#ubuntu-debian-and-derivatives) app is also required:
+
+```bash
+sudo add-apt-repository ppa:touchegg/stable
+sudo apt install touchegg
+```
+
 ## Binaries
 
 ### Database Deploy
