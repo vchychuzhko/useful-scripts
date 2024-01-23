@@ -40,6 +40,10 @@ echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
+# PhpStorm
+curl -s https://s3.eu-central-1.amazonaws.com/jetbrains-ppa/0xA6E8698A.pub.asc | gpg --dearmor | sudo tee /usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg] http://jetbrains-ppa.s3-website.eu-central-1.amazonaws.com any main" | sudo tee /etc/apt/sources.list.d/jetbrains-ppa.list > /dev/null
+
     printf "\n>>> Running Ubuntu upgrade >>>\n"
 sudo apt update
 sudo apt upgrade -y
@@ -452,6 +456,7 @@ Package: firefox*
 Pin: release o=Ubuntu*
 Pin-Priority: -1
 ' | sudo tee /etc/apt/preferences.d/firefox-no-snap
+sudo apt purge firefox -y
 sudo add-apt-repository ppa:mozillateam/ppa -y
 sudo apt install firefox -y
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
@@ -544,13 +549,9 @@ wget https://repo.skype.com/latest/skypeforlinux-64.deb
 sudo dpkg -i skypeforlinux-64.deb
 rm skypeforlinux-64.deb
 
-# Install PhpStorm
+# Install PhpStorm - https://github.com/JonasGroeger/jetbrains-ppa
     printf "\n>>> PhpStorm is going to be installed >>>\n"
-wget https://download.jetbrains.com/webide/PhpStorm-2023.3.2.tar.gz
-mkdir PhpStorm
-tar -xvf PhpStorm-2023.3.2.tar.gz --directory=PhpStorm
-sh ./PhpStorm/*/bin/phpstorm.sh
-rm -rf PhpStorm-2023.3.2.tar.gz PhpStorm
+sudo apt install phpstorm -y
 if ! grep -q 'fs.inotify.max_user_watches = 524288' /etc/sysctl.conf; then
     printf "\n>>> Setting filesystem parameters for PHPStorm IDE: fs.inotify.max_user_watches = 524288 >>>\n"
     echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf > /dev/null
