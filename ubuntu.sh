@@ -26,6 +26,15 @@ touch ~/Templates/Untitled\ Document
 sudo apt install curl -y
 
     printf "\n>>> Adding repositories and updating software list >>>\n"
+# Docker - https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
 # Various PHP versions
 sudo add-apt-repository ppa:ondrej/php -y
 
@@ -48,19 +57,18 @@ echo "deb [signed-by=/usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg] http
 sudo apt update
 sudo apt upgrade -y
 
-# ifconfig since 18.04
+# Install ifconfig
 sudo apt install net-tools -y
 
-# Install Docker and docker-compose
-    printf "\n>>> Docker and docker-compose are going to be installed >>>\n"
-# Using official repo to keep this updatable
-sudo apt install docker.io docker-compose -y
+# Install Docker and Docker Compose
+    printf "\n>>> Docker and Docker Compose are going to be installed >>>\n"
+sudo apt install docker.io docker-compose-plugin -y
 sudo service docker enable
 # This is to execute Docker command without sudo. Will work after logout/login because permissions should be refreshed
 sudo usermod -aG docker ${USER}
 
 # Install MySQL client and MySQL Docker images
-    printf "\n>>> MySQL 5.6, 5.7, MariaDB and phpMyAdmin are going to be installed via docker-compose >>>\n"
+    printf "\n>>> MySQL 8.0, MariaDB 10.11 and phpMyAdmin are going to be installed with docker compose >>>\n"
 sudo apt install mysql-client -y
 
 mkdir -p ~/misc/db/docker_mysql
@@ -75,35 +83,8 @@ innodb_buffer_pool_size=1G
 auto-rehash
 " > my.cnf
 
-echo "# docker-compose up -d --build --force-recreate
-version: '3.7'
+echo "# docker compose up -d --build --force-recreate
 services:
-  mysql56:
-    container_name: mysql56
-    image: mysql:5.6
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PASS=root
-    volumes:
-      - ./mysql56_databases:/var/lib/mysql
-      - ./my.cnf:/etc/my.cnf
-    ports:
-      - 3356:3306
-
-  mysql57:
-    container_name: mysql57
-    image: mysql:5.7
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PASS=root
-    volumes:
-      - ./mysql57_databases:/var/lib/mysql
-      - ./my.cnf:/etc/my.cnf
-    ports:
-      - 3357:3306
-
   mysql80:
     container_name: mysql80
     image: mysql:8.0
@@ -117,46 +98,42 @@ services:
     ports:
       - 3380:3306
 
-  mariadb104:
-    container_name: mariadb101
-    image: bitnami/mariadb:10.4
+  mariadb10:
+    container_name: mariadb10
+    image: bitnami/mariadb:10.11
     user: root
     restart: always
     environment:
       - MARIADB_ROOT_USER=root
       - MARIADB_ROOT_PASSWORD=root
     volumes:
-      - ./mariadb104_databases:/bitnami/mariadb
+      - ./mariadb10_databases:/bitnami/mariadb
       - ./my.cnf:/etc/my.cnf
     ports:
-      - 33104:3306
+      - 3310:3306
 
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
     restart: always
     depends_on:
-      - mysql56
-      - mysql57
       - mysql80
-      - mariadb104
+      - mariadb10
     environment:
-      - PMA_HOSTS=mysql56,mysql57,mysql80,mariadb104
+      - PMA_HOSTS=mysql80,mariadb10
       - PMA_USER=root
       - PMA_PASSWORD=root
     volumes:
       - /sessions
     links:
-      - mysql56:mysql56
-      - mysql57:mysql57
       - mysql80:mysql80
-      - mariadb104:mariadb104
+      - mariadb10:mariadb10
     ports:
       - 8080:80
 " > ./docker-compose.yml
 # Run docker-compose this way because we need not to log out in order to refresh permissions
-sudo docker-compose up -d
-    printf "\n>>> MySQL 5.6, 5.7, 8.0 and MariaDB 10.4 along with phpMyAdmin were installed successfully! >>>\n"
+sudo docker compose up -d
+    printf "\n>>> MySQL 8.0 and MariaDB 10.11 along with phpMyAdmin were installed successfully! >>>\n"
 
 # Install Nginx web server
     printf "\n>>> Nginx is going to be installed: >>>\n"
@@ -398,10 +375,8 @@ alias NG=\"sudo service nginx restart\"
 alias ES=\"sudo service elasticsearch restart\"
 alias ESOFF=\"sudo service elasticsearch stop\"
 
-alias MY56=\"mysql -uroot -proot -h127.0.0.1 --port=3356 --show-warnings\"
-alias MY57=\"mysql -uroot -proot -h127.0.0.1 --port=3357 --show-warnings\"
 alias MY80=\"mysql -uroot -proot -h127.0.0.1 --port=3380 --show-warnings\"
-alias MD104=\"mysql -uroot -proot -h127.0.0.1 --port=33104 --show-warnings\"
+alias MA10=\"mysql -uroot -proot -h127.0.0.1 --port=3310 --show-warnings\"
 
 alias SU=\"php bin/magento setup:upgrade\"
 alias DI=\"php bin/magento setup:di:compile\"

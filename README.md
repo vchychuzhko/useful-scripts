@@ -19,7 +19,7 @@ Development:
 - PHP (7.4-8.3)
 - Composer
 - Node 22 + [n](https://www.npmjs.com/package/n) (to switch versions)
-- MySQL Client (5.6-8.0 + MariaDB 10.4)
+- MySQL Client (8.0 + MariaDB 10.11)
 - Redis Server
 - Elasticsearch 7
 - Docker
