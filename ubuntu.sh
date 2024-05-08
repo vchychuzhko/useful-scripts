@@ -281,7 +281,7 @@ cert_function() {
 }
 
 nginx_function() {
-  sudo ln -s /etc/nginx/sites-available/\$1 /etc/nginx/sites-enabled/
+  sudo ln -s /etc/nginx/sites-available/\$1.conf /etc/nginx/sites-enabled/
 }
 
 xdebug_function() {
@@ -446,9 +446,9 @@ sudo apt install keepassxc -y
 
 # Install Slack messenger
     printf "\n>>> Slack messenger is going to be installed >>>\n"
-wget https://downloads.slack-edge.com/releases/linux/4.35.131/prod/x64/slack-desktop-4.35.131-amd64.deb
-sudo apt install ./slack-desktop-4.35.131-amd64.deb
-rm ./slack-desktop-4.35.131-amd64.deb
+wget https://downloads.slack-edge.com/releases/linux/4.38.115/prod/x64/slack-desktop-4.38.115-amd64.deb
+sudo apt install ./slack-desktop-4.38.115-amd64.deb
+rm ./slack-desktop-4.38.115-amd64.deb
 
 # Install Telegram messenger
     printf "\n>>> Telegram messenger is going to be installed >>>\n"

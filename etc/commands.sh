@@ -51,8 +51,10 @@ php bin/magento setup:install --admin-firstname="Admin" --admin-lastname="User" 
 
 #-----Patches-----#
 
-diff -Naur path/to/file.js path/to/file.OG.js > patch.patch # create a patch file
+diff -Naur path/to/file.js path/to/file.OG.js > diff.patch # create a patch file
 php ./vendor/bin/ece-patches apply # apply Magento patches
+
+git diff HEAD^ HEAD > diff.patch # save last commit to patch
 
 #-----Git commands-----#
 
