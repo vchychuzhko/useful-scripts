@@ -1,13 +1,13 @@
 # Useful Scripts
 
-Set of tools to be used on new system setup for Ubuntu 22.04
+Set of tools to be used on new system setup for Ubuntu 24.04
 
 ## Running the script
 
-Environment installation script for Ubuntu 22.04:
+Environment installation script for Ubuntu 24.04:
 
 ```bash
-sh ubuntu_22.04.sh
+sh ubuntu.sh
 ```
 
 **Important:** do not run this with `sudo` or when you are switched to the root user.
@@ -32,7 +32,7 @@ Browsers:
 
 Editors:
 - SublimeText
-- PHPStorm
+- PhpStorm
 - Vim
 
 Messengers:
@@ -46,7 +46,7 @@ etc:
 - `guake` - custom terminal
 - `shutter` - making and editing screenshots
 - `obs-studio` - screen recording
-- `gnome-tweaks` - ubuntu fine-tuning
+- `gnome-tweaks` - ubuntu fine-tuning tool
 - `curl` - tool to transfer data
 - `htop` - process manager
 - `mc` (Midnight Commander) - console file manager
@@ -103,10 +103,6 @@ sudo apt install touchegg
 ### Database Deploy
 
 Use `bin/db_deploy.sh` script as a basis to deploy database dump files.
-
-### Elasticsearch cleanup
-
-Use `bin/es_remove_unaliased.sh` script to remove unaliased indexes from elastic database.
 
 ## Laptop compatibility
 

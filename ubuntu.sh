@@ -446,7 +446,7 @@ rm google-chrome-stable_current_amd64.deb
 
 # Remove Thunderbird
     printf "\n>>> Thunderbird is going to be removed >>>\n"
-sudo apt purge thunderbird* -y
+sudo snap remove --purge thunderbird
 
 # Reinstall Firefox - https://www.debugpoint.com/remove-firefox-snap-ubuntu
     printf "\n>>> Firefox is going to be reinstalled >>>\n"

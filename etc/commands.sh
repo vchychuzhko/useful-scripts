@@ -1,7 +1,7 @@
 #-----Magento 2 cli commands-----#
 
-grunt exec:first_theme
-grunt less:first_theme
+grunt exec:theme
+grunt less:theme
 grunt exec:theme && grunt less:theme
 grunt watch
 
@@ -18,7 +18,7 @@ php bin/magento indexer:set-mode realtime # switch indexers to on-save processin
 
 php bin/magento setup:static-content:deploy -f # deploy static content forced (ignoring non-production mode)
 php bin/magento setup:static-content:deploy en_US nl_NL --exclude-theme Vendor/theme
-php bin/magento setup:static-content:deploy en_US en_GB de_DE --theme Vendor/theme
+php bin/magento setup:static-content:deploy en_US de_DE --theme Vendor/theme
 
 php bin/magento deploy:mode:set developer # set mode to developer
 php bin/magento deploy:mode:set production --skip-compilation # set mode to production, optionally skipping compilation
@@ -34,17 +34,7 @@ php bin/magento sampledata:remove # while removing, delete *.flag file (drop DB,
 
 php bin/magento app:config:import # import configurations
 
-rm -rf var/cache/ var/page_cache/ # clear layout
 rm -rf pub/static/frontend/ pub/static/_cache/ pub/static/deployed_version.txt var/cache/ var/page_cache/ var/view_preprocessed/ # full clear
-
-/misc/apps/marketplace-eqp/vendor/bin/phpcs --standard=MEQP2 --severity=8 <path to dir> # run tests to check php code
-
-/rest/V1/products?searchCriteria # Magento REST API all products
-/rest/V1/products/<SKU>
-/rest/V1/directory/currency
-# vendor/magento/module-webapi/Controller/Rest/RequestValidator.php -> L68
-
-dev/tests/static/testsuite/Magento/Test/Js/_files/eslint/.eslintrc # ESLINT path example, for phpstorm
 
 cat app/etc/env.php | grep 'host\|dbname\|username\|password' # view needed db data
 
@@ -59,15 +49,14 @@ rm app/etc/config.php
 rm app/etc/env.php
 php bin/magento setup:install --admin-firstname="Admin" --admin-lastname="User" --admin-email="admin@mail.com" --admin-user="admin" --admin-password="Q1w2e3r4" --base-url="https://magento.local/" --base-url-secure="https://magento.local/" --db-name="magento_db" --db-user="root" --db-password="root" --db-host="127.0.0.1:3357" --use-rewrites=1 --use-secure="1" --use-secure-admin="1" --session-save="files" --language=en_US --currency=USD --timezone=Europe/Kiev --cleanup-database --backend-frontname="admin"
 
-#-----Symfony encore commands-----#
+#-----Patches-----#
 
-yarn encore dev # compile assets once
-yarn encore dev --watch # or, recompile assets automatically when files change
-yarn encore production # on deploy, create a production build
+diff -Naur path/to/file.js path/to/file.OG.js > patch.patch # create a patch file
+php ./vendor/bin/ece-patches apply # apply Magento patches
 
 #-----Git commands-----#
 
-cat ~/.ssh/id_rsa.pub | pbcopy # copy ssh key to clipboard
+xclip -sel clip < ~/.ssh/id_rsa.pub # copy ssh key to clipboard
 type ~/.ssh/id_rsa.pub | clip # copy ssh key to clipboard on Windows
 
 git config core.fileMode false # ignore file owner modification
@@ -181,7 +170,7 @@ php -d memory_limit=1G my_script.php # increase memory limit for single command
 
 echo "<?php phpinfo();" > info.php # create info.php file
 
-php -r 'echo ("0" ? 1 : 0) . "\n";' # run code in the command line
+php -r 'echo ([] ? 1 : 0) . "\n";' # run code in the command line
 php -r 'phpinfo();' | grep gc_maxlifetime # run phpinfo in CLI with filtering results
 
 find ./ -type f -iname '*.php' | xargs -n1 /usr/bin/php -l # validate php files according to your current PHP version
@@ -201,8 +190,7 @@ curl -X DELETE 'http://127.0.0.1:9200/_all' # remove all indexes
 
 ifconfig | grep "inet " | grep -v 127.0.0.1 # show your local IP
 
-subl /etc/bash.bashrc # create cmd alias
-subl ~/.bashrc # edit command prompt view - l59
+curl -Of http://site.com/image.jpg # download file
 
 tail -n <number> <file> # shows last <number> of lines in the file
 tail -f <file> | grep <filter> # shows last 10 lines of the <file> with refreshing and filtering by <filter>
@@ -319,7 +307,7 @@ mysql -u[username] -p[password] [dbname] -N -e 'show tables like "prefix\_%"' | 
 
 USE <db_name>;
 SOURCE <file_name.sql>; # import dump into db
-docker exec -i mysql57 mysql -u<user> -p<password> <db_name> < <file_name.sql> # upload dump for docker mysql, you should be in dump's dir
+docker exec -i mysql57 mysql -u<user> -p<password> <db_name> < <file_name.sql> # upload dump for docker mysql, you should be in dump dir
 docker exec -i mysql57 mysqldump -u<user> -p <db_name> | gzip > <db_name>_$(date +'%Y-%m-%d_%H-%M').sql.gz; # create dump for docker mysql
 
 GRANT ALL ON <db_name>.* TO '<user_name>'@'localhost'; # gives user(s)(separated by coma) access to '<db_name>' DB
@@ -348,13 +336,3 @@ ALTER TABLE `catalog_product_entity` AUTO_INCREMENT = 1; # then query to start p
 SELECT User,Host FROM mysql.user; # view all users
 REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'user'@'localhost'; # disable privileges
 DROP USER 'user'@'localhost'; # remove user
-
-#-----Create Magento patch-----#
-
-git clone https://github.com/magento/magento2.git
-cd magento2
-git checkout 2.3.3 # switch to your version
-# do changes
-git diff > file.patch
-# remove app/code/Magento/Module path from patch file
-# https://magento.stackexchange.com/a/256580
