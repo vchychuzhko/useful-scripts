@@ -30,7 +30,7 @@ sudo apt install curl -y
 sudo add-apt-repository ppa:ondrej/php -y
 
 # Node
-curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 
 # ElasticSearch 7
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
@@ -388,10 +388,10 @@ alias FPM83=\"sudo service php8.3-fpm restart\"
 alias C1=\"sudo composer self-update --1\"
 alias C2=\"sudo composer self-update --2\"
 
-alias N12=\"sudo n 12\"
-alias N14=\"sudo n 14\"
 alias N16=\"sudo n 16\"
 alias N18=\"sudo n 18\"
+alias N20=\"sudo n 20\"
+alias N22=\"sudo n 22\"
 
 alias AP=\"sudo service apache2 restart\"
 alias NG=\"sudo service nginx restart\"
@@ -428,10 +428,7 @@ npm install -g yarn
 # Install N
     printf "\n>>> N package is going to be installed >>>\n"
 npm install -g n
-
-# Install Python 2 and essential tools for node-sass
-    printf "\n>>> Python 2 and essential tools are going to be installed >>>\n"
-sudo apt install python2 build-essential -y
+sudo ln -s ~/.npm-global/bin/n /usr/local/bin/n # as n requires sudo access
 
 # Install ElasticSearch 7
     printf "\n>>> JDK and ElasticSearch 7 are going to be installed >>>\n"
@@ -466,11 +463,11 @@ echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codenam
 sudo apt install epiphany-browser -y
 
 # Install mkcert - https://github.com/FiloSottile/mkcert/releases
-    printf "\n>>> mkcert are going to be installed >>>\n"
+    printf "\n>>> mkcert is going to be installed >>>\n"
 sudo apt install libnss3-tools -y
-wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.4/mkcert-v1.4.4-linux-amd64
-chmod +x mkcert-v1.4.4-linux-amd64
-sudo mv mkcert-v1.4.4-linux-amd64 /usr/bin/mkcert
+curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
+chmod +x mkcert-v*-linux-amd64
+sudo mv mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 mkcert -install
 
 # Install Guake terminal
