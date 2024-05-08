@@ -529,10 +529,6 @@ if ! grep -q 'fs.inotify.max_user_watches = 524288' /etc/sysctl.conf; then
     echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf > /dev/null
 fi
 
-# Install Gnome Tweak Tool for tuning Ubuntu
-    printf "\n>>> Gnome Tweak Tool is going to be installed >>>\n"
-sudo apt install gnome-tweaks -y
-
 # System reboot
     printf "\033[31;1m"
 read -p "/**********************

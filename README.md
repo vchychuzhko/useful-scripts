@@ -23,7 +23,7 @@ Development:
 - Redis Server
 - Elasticsearch 7
 - Docker
-- mkcert (generating SSL certificates for local development)
+- mkcert (Local SSL Certificates)
 
 Browsers:
 - Google Chrome
@@ -46,7 +46,6 @@ etc:
 - `guake` - custom terminal
 - `shutter` - making and editing screenshots
 - `obs-studio` - screen recording
-- `gnome-tweaks` - ubuntu fine-tuning tool
 - `curl` - tool to transfer data
 - `htop` - process manager
 - `mc` (Midnight Commander) - console file manager
