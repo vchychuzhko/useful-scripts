@@ -45,13 +45,12 @@ curl -sL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
 echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
 
+# KeePassXC
+sudo add-apt-repository ppa:phoerious/keepassxc -y -n
+
 # Sublime Text
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-
-# PhpStorm
-curl -s https://s3.eu-central-1.amazonaws.com/jetbrains-ppa/0xA6E8698A.pub.asc | gpg --dearmor | sudo tee /usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg] http://jetbrains-ppa.s3-website.eu-central-1.amazonaws.com any main" | sudo tee /etc/apt/sources.list.d/jetbrains-ppa.list > /dev/null
 
     printf "\n>>> Running Ubuntu upgrade >>>\n"
 sudo apt update
@@ -360,19 +359,6 @@ rm google-chrome-stable_current_amd64.deb
     printf "\n>>> Thunderbird is going to be removed >>>\n"
 sudo snap remove --purge thunderbird
 
-# Reinstall Firefox - https://www.debugpoint.com/remove-firefox-snap-ubuntu
-    printf "\n>>> Firefox is going to be reinstalled >>>\n"
-sudo snap remove --purge firefox
-echo '
-Package: firefox*
-Pin: release o=Ubuntu*
-Pin-Priority: -1
-' | sudo tee /etc/apt/preferences.d/firefox-no-snap
-sudo apt purge firefox -y
-sudo add-apt-repository ppa:mozillateam/ppa -y
-sudo apt install firefox -y
-echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
-
 # Install Epiphany Web Browser
     printf "\n>>> Epiphany Web Browser is going to be installed >>>\n"
 sudo apt install epiphany-browser -y
@@ -385,15 +371,15 @@ chmod +x mkcert-v*-linux-amd64
 sudo mv mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 mkcert -install
 
-# Install Guake terminal
-    printf "\n>>> Guake terminal is going to be installed >>>\n"
+# Install Guake
+    printf "\n>>> Guake is going to be installed >>>\n"
 sudo apt install guake -y
 
-# Install Diodon clipboard manager
-    printf "\n>>> Diodon clipboard manager is going to be installed >>>\n"
+# Install Diodon
+    printf "\n>>> Diodon is going to be installed >>>\n"
 sudo apt install diodon -y
 
-# Install Sublime Text editor
+# Install Sublime Text
     printf "\n>>> Sublime Text is going to be installed >>>\n"
 sudo apt install sublime-text -y
 
@@ -405,7 +391,7 @@ sudo apt install xclip -y
     printf "\n>>> Midnight Commander is going to be installed >>>\n"
 sudo apt install mc -y
 
-# Install Vim text editor
+# Install Vim
     printf "\n>>> Vim is going to be installed >>>\n"
 sudo apt install vim -y
 
@@ -433,37 +419,29 @@ sudo apt install shutter -y
 
 # Install Pinta
     printf "\n>>> Pinta is going to be installed >>>\n"
-sudo apt install pinta -y
+sudo snap install pinta
 
 # Install OBS Studio
     printf "\n>>> OBS Studio is going to be installed >>>\n"
 sudo apt install obs-studio -y
 
-# Install KeePassXC - free encrypted password storage
+# Install KeePassXC
     printf "\n>>> KeePassXC is going to be installed >>>\n"
-sudo add-apt-repository ppa:phoerious/keepassxc -y
 sudo apt install keepassxc -y
 
-# Install Slack messenger
-    printf "\n>>> Slack messenger is going to be installed >>>\n"
-wget https://downloads.slack-edge.com/releases/linux/4.38.115/prod/x64/slack-desktop-4.38.115-amd64.deb
-sudo apt install ./slack-desktop-4.38.115-amd64.deb
-rm ./slack-desktop-4.38.115-amd64.deb
+# Install Slack
+    printf "\n>>> Slack is going to be installed >>>\n"
+wget https://downloads.slack-edge.com/desktop-releases/linux/x64/4.39.95/slack-desktop-4.39.95-amd64.deb
+sudo apt install ./slack-desktop-4.39.95-amd64.deb
+rm ./slack-desktop-4.39.95-amd64.deb
 
-# Install Telegram messenger
-    printf "\n>>> Telegram messenger is going to be installed >>>\n"
-sudo add-apt-repository ppa:atareao/telegram -y
-sudo apt install telegram -y
+# Install Telegram
+    printf "\n>>> Telegram is going to be installed >>>\n"
+sudo snap install telegram
 
-# Install Skype messenger
-    printf "\n>>> Skype messenger is going to be installed >>>\n"
-wget https://repo.skype.com/latest/skypeforlinux-64.deb
-sudo dpkg -i skypeforlinux-64.deb
-rm skypeforlinux-64.deb
-
-# Install PhpStorm - https://github.com/JonasGroeger/jetbrains-ppa
+# Install PhpStorm
     printf "\n>>> PhpStorm is going to be installed >>>\n"
-sudo apt install phpstorm -y
+sudo snap install phpstorm --classic
 if ! grep -q 'fs.inotify.max_user_watches = 524288' /etc/sysctl.conf; then
     printf "\n>>> Setting filesystem parameters for PHPStorm IDE: fs.inotify.max_user_watches = 524288 >>>\n"
     echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf > /dev/null
@@ -478,7 +456,7 @@ read -p "/**********************
 *    System is going to be restarted
 *
 *    Based on this instruction by DefaultValue:
-*    - post-install script - https://github.com/DefaultValue/ubuntu_post_install_scripts
+*    - https://github.com/DefaultValue/ubuntu_post_install_scripts
 *
 *    PRESS ANY KEY TO CONTINUE
 *
