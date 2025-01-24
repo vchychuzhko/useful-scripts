@@ -38,6 +38,8 @@ rm -rf pub/static/frontend/ pub/static/_cache/ pub/static/deployed_version.txt v
 
 cat app/etc/env.php | grep 'host\|dbname\|username\|password' # view needed db data
 
+find . -type d -name "Test" -exec rm -rf {} + # remove all vendor Test folders (to clean up the search)
+
 #-----Magento Cli Installation-----#
 
 # Execute the following command in order to create a new administrator with username "new-admin" and password "!admin123!"
@@ -234,22 +236,6 @@ grep --exclude-dir={generated,dev,setup,pub,var,.git,.idea,node_modules} -rnw '.
 vi +10 file.txt # open file on the specific line
 
 sudo -H -u <username> bash -c 'ssh -Tv git@bitbucket.org' # run command as another user
-
-#-----CentOs-----#
-
-cat /etc/redhat-release # check Centos version
-
-firewall-cmd --zone=public --add-service=http --permament # add apache (httpd) to public rule for iptables service (permanently)
-firewall-cmd --zone=public --permanent --list-services # list all (permanent) public rules for iptables
-
-vi /etc/php-fpm.d/www.conf # edit php-fpm configurations file
-systemctl restart php-fpm
-
-vi /etc/httpd/conf/httpd.conf # edit apache configurations file
-vi /etc/httpd/conf.d/vhosts.conf # edit apache virtual hosts file
-systemctl restart httpd
-
-systemctl restart php-fpm && systemctl restart httpd
 
 #-----Supervisor-----#
 

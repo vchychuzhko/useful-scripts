@@ -52,7 +52,7 @@ sudo add-apt-repository ppa:phoerious/keepassxc -y -n
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
-    printf "\n>>> Running Ubuntu upgrade >>>\n"
+    printf "\n>>> Running system upgrade >>>\n"
 sudo apt update
 sudo apt upgrade -y
 
@@ -431,9 +431,7 @@ sudo apt install keepassxc -y
 
 # Install Slack
     printf "\n>>> Slack is going to be installed >>>\n"
-wget https://downloads.slack-edge.com/desktop-releases/linux/x64/4.39.95/slack-desktop-4.39.95-amd64.deb
-sudo apt install ./slack-desktop-4.39.95-amd64.deb
-rm ./slack-desktop-4.39.95-amd64.deb
+sudo snap install slack
 
 # Install Telegram
     printf "\n>>> Telegram is going to be installed >>>\n"
