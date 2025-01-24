@@ -36,9 +36,9 @@ sh ubuntu.sh
 
 Development:
 - Git
-- PHP (8.0-8.3)
+- PHP (8.0-8.4)
 - Composer
-- Node 22 + [n](https://www.npmjs.com/package/n) (to switch versions)
+- Node 22 + [n](https://www.npmjs.com/package/n) (to switch versions, 14-22 by default)
 - MySQL Client (8.0 + MariaDB 10.11)
 - Redis Server
 - Elasticsearch 7
@@ -47,7 +47,6 @@ Development:
 
 Browsers:
 - Google Chrome
-- Firefox (PPA)
 - Epiphany (webkit "Gnome Web" browser)
 
 Editors:
@@ -58,17 +57,21 @@ Editors:
 Messengers:
 - Telegram
 - Slack
-- Skype
+
+Tools
+- Guake - terminal
+- Diodon - clipboard manager
+- KeePassXC - passwords manager
+- Shutter
+- OBS Studio
+- Pinta
 
 etc:
-- `diodon` - clipboard manager
-- `keepassxc` - password storage
-- `guake` - custom terminal
-- `shutter` - making and editing screenshots
-- `obs-studio` - screen recording
-- `curl` - tool to transfer data
-- `htop` - process manager
-- `mc` (Midnight Commander) - console file manager
+- curl
+- htop
+- mc (Midnight Commander)
+- pv (Pipe Viewer)
+- xclip
 
 ## Post-installation tips
 
@@ -119,7 +122,7 @@ sudo apt install touchegg
 
 ## Database Deploy
 
-Use `bin/db_deploy.sh` script as a basis to deploy database dump files.
+Use `bin/db_deploy.sh` script as a basis to deploy Magento database files.
 
 ## Aliases
 
@@ -127,17 +130,17 @@ Several useful aliases were added to the `~/.bash_aliases` file:
 
 ### PHP
 
-| Alias  | Description                                    |
-|:------:|------------------------------------------------|
-| PHP[X] | Switch CLI to [X] version of PHP, e.g. `PHP83` |
-|  C[X]  | Switch Composer to [X] version, e.g. `C2`      |
-|   XD   | Toggle Xdebug for FPM and CLI environments     |
+| Alias  | Description                                                         |
+|:------:|---------------------------------------------------------------------|
+| PHP[X] | Switch CLI to [X version](#installed-software) of PHP, e.g. `PHP83` |
+| C[1,2] | Switch Composer version, e.g. `C2`                                  |
+|   XD   | Toggle Xdebug for FPM and CLI environments                          |
 
 ### Node
 
-| Alias | Description                            |
-|:-----:|----------------------------------------|
-| N[X]  | Switch Node to [X] version, e.g. `N20` |
+| Alias | Description                                                         |
+|:-----:|---------------------------------------------------------------------|
+| N[X]  | Switch Node to [X version](#installed-software) of Node, e.g. `N20` |
 
 ### Magento
 

@@ -194,6 +194,11 @@ sudo apt install php8.2-bz2 php8.2-bcmath php8.2-curl php8.2-gd php8.2-imap php8
 sudo apt install php8.3 php8.3-cli php8.3-common php8.3-opcache php8.3-readline --no-install-recommends -y
 sudo apt install php8.3-bz2 php8.3-bcmath php8.3-curl php8.3-gd php8.3-imap php8.3-intl php8.3-mbstring php8.3-mysql php8.3-soap php8.3-xdebug php8.3-xml php8.3-xmlrpc php8.3-zip php8.3-fpm -y
 
+# Install PHP 8.4 and modules
+    printf "\n>>> PHP 8.4 and common modules are going to be installed >>>\n"
+sudo apt install php8.4 php8.4-cli php8.4-common php8.4-opcache php8.4-readline --no-install-recommends -y
+sudo apt install php8.4-bz2 php8.4-bcmath php8.4-curl php8.4-gd php8.4-imap php8.4-intl php8.4-mbstring php8.4-mysql php8.4-soap php8.4-xdebug php8.4-xml php8.4-xmlrpc php8.4-zip php8.4-fpm -y
+
     printf "\n>>> Creating ini files for the development environment >>>\n"
 IniDirs=/etc/php/*/*/conf.d/
 for IniDir in ${IniDirs};
@@ -246,9 +251,9 @@ echo "memory_limit=2G
 " | sudo tee -a ${IniDir}999-custom-config.ini
 done
 
-# Set default PHP version to 8.2
-    printf "Enabling PHP 8.2 by default"
-sudo update-alternatives --set php /usr/bin/php8.2
+# Set default PHP version to 8.3
+    printf "Enabling PHP 8.3 by default"
+sudo update-alternatives --set php /usr/bin/php8.3
 
     printf "\n>>> Configuring php modules >>>\n"
 sudo phpenmod mbstring
@@ -291,6 +296,11 @@ xdebug_function() {
         sudo phpenmod xdebug
         echo \"Xdebug is ON\"
     fi
+
+    for version in 8.0 8.1 8.2 8.3 8.4
+    do
+        sudo service php\$version-fpm restart
+    done
 }
 
 alias CERT=cert_function
@@ -301,10 +311,12 @@ alias PHP80=\"sudo update-alternatives --set php /usr/bin/php8.0\"
 alias PHP81=\"sudo update-alternatives --set php /usr/bin/php8.1\"
 alias PHP82=\"sudo update-alternatives --set php /usr/bin/php8.2\"
 alias PHP83=\"sudo update-alternatives --set php /usr/bin/php8.3\"
+alias PHP84=\"sudo update-alternatives --set php /usr/bin/php8.4\"
 
 alias C1=\"sudo composer self-update --1\"
 alias C2=\"sudo composer self-update --2\"
 
+alias N14=\"sudo n 14\"
 alias N16=\"sudo n 16\"
 alias N18=\"sudo n 18\"
 alias N20=\"sudo n 20\"
