@@ -285,22 +285,27 @@ cert_function() {
 }
 
 nginx_function() {
+  if [ ! -f \"/etc/nginx/sites-available/\$1.conf\" ]; then
+    echo \"File '\$1.conf' does not exist\"
+    return 1
+  fi
+
   sudo ln -s /etc/nginx/sites-available/\$1.conf /etc/nginx/sites-enabled/
 }
 
 xdebug_function() {
-    if [ -e \"/etc/php/8.0/fpm/conf.d/20-xdebug.ini\" ]; then
-        sudo phpdismod xdebug
-        echo \"Xdebug is OFF\"
-    else
-        sudo phpenmod xdebug
-        echo \"Xdebug is ON\"
-    fi
+  if [ -e \"/etc/php/8.0/fpm/conf.d/20-xdebug.ini\" ]; then
+    sudo phpdismod xdebug
+    echo \"Xdebug is OFF\"
+  else
+    sudo phpenmod xdebug
+    echo \"Xdebug is ON\"
+  fi
 
-    for version in 8.0 8.1 8.2 8.3 8.4
-    do
-        sudo service php\$version-fpm restart
-    done
+  for version in 8.0 8.1 8.2 8.3 8.4
+  do
+    sudo service php\$version-fpm restart
+  done
 }
 
 alias CERT=cert_function

@@ -316,6 +316,8 @@ UPDATE mytable
 ALTER TABLE mage_recently_visited_categories
     CHANGE user_id customer_id int(11); # rename table column name
 
+SET FOREIGN_KEY_CHECKS = 0; # use 1 to enable
+
 # Remove all records from the table and reset key
 DELETE FROM `catalog_product_entity`; # query to delete all products
 ALTER TABLE `catalog_product_entity` AUTO_INCREMENT = 1; # then query to start product id from 1
