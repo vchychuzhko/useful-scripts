@@ -160,7 +160,7 @@ sudo sed -i "s/listen 80 default_server;/listen nginx:80;/g" /etc/nginx/sites-av
 # Apache
 sudo sed -i "s/Listen 80/Listen apache:80/g" /etc/apache2/ports.conf
 sudo sed -i "s/Listen 443/Listen apache:443/g" /etc/apache2/ports.conf
-sudo sed -i "s/<VirtualHost \*:80>/<VirtualHost apache:80>/g" /etc/apache2/sites-available/000-default
+sudo sed -i "s/<VirtualHost \*:80>/<VirtualHost apache:80>/g" /etc/apache2/sites-available/000-default.conf
 # hosts file
 echo "
 # Nginx-Apache parallel setup - https://stackoverflow.com/a/56379304
