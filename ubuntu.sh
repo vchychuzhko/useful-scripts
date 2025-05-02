@@ -372,10 +372,6 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
 
-# Remove Thunderbird
-    printf "\n>>> Thunderbird is going to be removed >>>\n"
-sudo snap remove --purge thunderbird
-
 # Install Epiphany Web Browser
     printf "\n>>> Epiphany Web Browser is going to be installed >>>\n"
 sudo apt install epiphany-browser -y
