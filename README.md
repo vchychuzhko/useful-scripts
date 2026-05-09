@@ -20,7 +20,6 @@ sh ubuntu.sh
   - [Shortcuts](#shortcuts)
   - [Bash Profile](#bash-profile)
   - [Dual-Boot Time Issue](#dual-boot-time-issue)
-  - [X11 Gestures](#x11-gestures)
   - [Database Deploy](#database-deploy)
 - [Aliases](#aliases)
   - [PHP](#php)
@@ -62,9 +61,9 @@ Tools
 - Guake - terminal
 - Diodon - clipboard manager
 - KeePassXC - passwords manager
-- Shutter
-- OBS Studio
-- Pinta
+- Gradia - screenshots tool
+- OBS Studio - screen recorder
+- Pinta - image editor
 
 etc:
 - curl
@@ -107,17 +106,6 @@ In case of dual-boot setup with Windows, run this command after installation to 
 
 ```bash
 timedatectl set-local-rtc 1
-```
-
-### X11 Gestures
-
-By default 3-finger gestures are not available in X11 session. To enable them install [X11 Gestures](https://extensions.gnome.org/extension/4033/x11-gestures/) extension.
-
-[Touchegg](https://github.com/JoseExposito/touchegg?tab=readme-ov-file#ubuntu-debian-and-derivatives) app is also required:
-
-```bash
-sudo add-apt-repository ppa:touchegg/stable
-sudo apt install touchegg
 ```
 
 ## Database Deploy

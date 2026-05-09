@@ -426,9 +426,9 @@ sudo apt install redis-server -y
 sudo sed -i 's/^supervised no/supervised systemd/g' /etc/redis/redis.conf
 sudo service redis restart
 
-# Install Shutter
-    printf "\n>>> Shutter is going to be installed >>>\n"
-sudo apt install shutter -y
+# Install Gradia
+    printf "\n>>> Gradia is going to be installed >>>\n"
+sudo snap install gradia
 
 # Install Pinta
     printf "\n>>> Pinta is going to be installed >>>\n"
