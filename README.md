@@ -68,6 +68,7 @@ Tools
 etc:
 - curl
 - htop
+- gufw (GUI for firewall)
 - mc (Midnight Commander)
 - pv (Pipe Viewer)
 - xclip

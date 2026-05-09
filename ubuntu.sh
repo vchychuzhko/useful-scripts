@@ -170,6 +170,17 @@ echo "
 sudo service nginx restart
 sudo service apache2 restart
 
+# Enable firewall
+    printf "\n>>> Enabling firewall >>>\n"
+# Install GUI
+sudo apt install gufw -y
+# Fix for ufw rules to work on docker containers
+sudo mkdir -p /etc/docker
+echo "{
+    \"iptables\": false
+}" | sudo tee /etc/docker/daemon.json
+sudo ufw enable
+
 # Install PHP common packages
     printf "\n>>> Install common PHP packages (php-pear php-imagick php-memcached php-ssh2 php-xdebug) >>>\n"
 sudo apt install php-pear php-imagick php-memcached php-ssh2 php-xdebug --no-install-recommends -y
