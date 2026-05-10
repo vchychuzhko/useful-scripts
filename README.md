@@ -59,7 +59,6 @@ Messengers:
 
 Tools
 - Guake - terminal
-- Diodon - clipboard manager
 - KeePassXC - passwords manager
 - Gradia - screenshots tool
 - OBS Studio - screen recorder
@@ -78,11 +77,10 @@ etc:
 ### Shortcuts
 
 You can add shortcuts for installed programs to have immediate access.  
-Add them in Settings: `Keyboard > "View and Customize Shortcuts" > "Custom Shortcuts"`
+Add them in Settings: Keyboard > View and Customize Shortcuts > Custom Shortcuts
 
 |         Program          | Command             | Suggested shortcut |
 |:------------------------:|---------------------|--------------------|
-| Diodon Clipboard Manager | `/usr/bin/diodon`   | Ctrl+Alt+H         |
 |      Guake Terminal      | `/usr/bin/guake -t` | F1                 |
 
 ### Bash Profile
@@ -108,6 +106,11 @@ In case of dual-boot setup with Windows, run this command after installation to 
 ```bash
 timedatectl set-local-rtc 1
 ```
+
+## Recommended Extensions
+
+- [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
+- [Tasks in panel](https://extensions.gnome.org/extension/8642/tasks-in-panel/)
 
 ## Database Deploy
 

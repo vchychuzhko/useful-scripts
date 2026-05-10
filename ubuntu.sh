@@ -59,6 +59,10 @@ sudo apt upgrade -y
 # Install ifconfig
 sudo apt install net-tools -y
 
+# Install Gnome Browser Connector
+    printf "\n>>> Gnome Browser Connector is going to be installed >>>\n"
+sudo apt install gnome-browser-connector -y
+
 # Install Docker and Docker Compose
     printf "\n>>> Docker and Docker Compose are going to be installed >>>\n"
 sudo apt install docker.io docker-compose-plugin -y
@@ -398,10 +402,6 @@ mkcert -install
 # Install Guake
     printf "\n>>> Guake is going to be installed >>>\n"
 sudo apt install guake -y
-
-# Install Diodon
-    printf "\n>>> Diodon is going to be installed >>>\n"
-sudo apt install diodon -y
 
 # Install Sublime Text
     printf "\n>>> Sublime Text is going to be installed >>>\n"
