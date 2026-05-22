@@ -44,9 +44,6 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt update
 sudo apt upgrade -y
 
-# Install ifconfig
-sudo apt install net-tools -y
-
 # Install Gnome Browser Connector
     printf "\n>>> Gnome Browser Connector is going to be installed >>>\n"
 sudo apt install gnome-browser-connector -y
@@ -384,10 +381,6 @@ sudo apt install guake -y
 # Install Sublime Text
     printf "\n>>> Sublime Text is going to be installed >>>\n"
 sudo apt install sublime-text -y
-
-# Install xclip - copy output to clipboard
-    printf "\n>>> xclip is going to be installed >>>\n"
-sudo apt install xclip -y
 
 # Install Midnight Commander
     printf "\n>>> Midnight Commander is going to be installed >>>\n"

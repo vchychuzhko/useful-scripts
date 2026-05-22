@@ -14,22 +14,18 @@ sh ubuntu.sh
 
 ## Table of Contents
 
-- [Running the script](#running-the-script)
 - [Installed software](#installed-software)
 - [Post-installation tips](#post-installation-tips)
   - [Shortcuts](#shortcuts)
   - [Bash Profile](#bash-profile)
   - [Dual-Boot Time Issue](#dual-boot-time-issue)
-  - [Database Deploy](#database-deploy)
+- [Database Deploy](#database-deploy)
 - [Aliases](#aliases)
   - [PHP](#php)
   - [Node](#node)
   - [Magento](#magento)
   - [Other](#other)
-  - [Special](#special)
-    - [CERT](#cert)
-    - [NGENSITE](#ngensite)
-- [Laptop compatibility](#laptop-compatibility)
+  - [Custom](#custom)
 
 ## Installed software
 
@@ -39,7 +35,7 @@ Development:
 - Composer
 - Node 24 + [nvm](https://www.nvmnode.com/) (to switch versions, 16-24 by default)
 - MySQL Client (8.0 + MariaDB 10.11)
-- Redis Server
+- Redis
 - Elasticsearch 7
 - Docker
 - mkcert (Local SSL Certificates)
@@ -70,7 +66,6 @@ etc:
 - gufw (GUI for firewall)
 - mc (Midnight Commander)
 - pv (Pipe Viewer)
-- xclip
 
 ## Post-installation tips
 
@@ -85,7 +80,7 @@ Add them in Settings: Keyboard > View and Customize Shortcuts > Custom Shortcuts
 
 ### Bash Profile
 
-You can customize terminal output to show current Git branch when you-re inside the repository.  
+You can customize terminal output to show current Git branch when you're inside the repository.  
 Find and update respective block in `~/.bashrc`:
 
 ```bash
@@ -94,7 +89,7 @@ git_branch() {
 }
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \[\033[01;35m\]$(git_branch)\[\033[00m\]\$ '
+    PS1='\[\033[01;34m\]\w \[\033[01;35m\]$(git_branch)\[\033[00m\]\$ '
 else
     ...
 ```
@@ -155,21 +150,12 @@ Several useful aliases were added to the `~/.bash_aliases` file:
 |    ES    | Start/Restart Elasticsearch         |
 |  ESOFF   | Stop Elasticsearch                  |
 
-### Special
+### Custom
 
 |        Alias         | Description                                                                                                 |
 |:--------------------:|-------------------------------------------------------------------------------------------------------------|
 |   CERT example.com   | Generate SSL certificate for `example.com`, including `www.example.com`                                     |
 | NGENSITE example.com | Links Nginx configuration for `example.com` into `sites-enabled` folder, enabling the config file inclusion |
-
-## Laptop compatibility
-
-In order to have proper S3 state suspend, check its support via terminal:
-
-```bash
-sudo dmesg | grep -i acpi | grep supports # Linux
-powercfg /a                               # Windows
-```
 
 ---
 
