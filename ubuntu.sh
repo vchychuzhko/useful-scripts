@@ -26,15 +26,6 @@ touch ~/Templates/Untitled\ Document
 sudo apt install curl -y
 
     printf "\n>>> Adding repositories and updating software list >>>\n"
-# Docker - https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
 # Various PHP versions
 sudo add-apt-repository ppa:ondrej/php -y -n
 
@@ -61,8 +52,8 @@ sudo apt install net-tools -y
 sudo apt install gnome-browser-connector -y
 
 # Install Docker and Docker Compose
-    printf "\n>>> Docker and Docker Compose are going to be installed >>>\n"
-sudo apt install docker.io docker-compose-plugin -y
+    printf "\n>>> Docker is going to be installed >>>\n"
+curl -fsSL https://get.docker.com | sudo sh
 # This is to execute Docker command without sudo. Will work after logout/login because permissions should be refreshed
 sudo usermod -aG docker ${USER}
 
