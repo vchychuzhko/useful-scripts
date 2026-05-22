@@ -425,6 +425,10 @@ sudo snap install slack
     printf "\n>>> Telegram is going to be installed >>>\n"
 sudo snap install telegram
 
+# Install Virt Manager
+    printf "\n>>> Virt Manager is going to be installed >>>\n"
+sudo apt install virt-manager -y
+
 # Install PhpStorm
     printf "\n>>> PhpStorm is going to be installed >>>\n"
 sudo snap install phpstorm --classic

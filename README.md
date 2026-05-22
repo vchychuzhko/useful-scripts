@@ -59,6 +59,7 @@ Tools
 - Gradia - screenshots tool
 - OBS Studio - screen recorder
 - Pinta - image editor
+- Virt Manager - VM manager
 
 etc:
 - htop
