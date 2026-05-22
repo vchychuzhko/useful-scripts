@@ -7,7 +7,7 @@ Set of tools to be used on new system setup for Ubuntu 24.04
 Environment installation script for Ubuntu 24.04:
 
 ```bash
-sh ubuntu.sh
+curl -fsSL https://raw.githubusercontent.com/vchychuzhko/useful-scripts/refs/heads/master/ubuntu.sh | bash
 ```
 
 **Important:** do not run this with `sudo` or when you are switched to the root user.
@@ -61,7 +61,6 @@ Tools
 - Pinta - image editor
 
 etc:
-- curl
 - htop
 - gufw (GUI for firewall)
 - mc (Midnight Commander)

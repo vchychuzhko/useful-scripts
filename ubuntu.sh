@@ -21,10 +21,6 @@ mkdir -p ~/misc/apps ~/misc/ssl ~/misc/db
 mkdir -p ~/Templates
 touch ~/Templates/Untitled\ Document
 
-# Install cUrl
-    printf "\n>>> cUrl is going to be installed >>>\n"
-sudo apt install curl -y
-
     printf "\n>>> Adding repositories and updating software list >>>\n"
 # Various PHP versions
 sudo add-apt-repository ppa:ondrej/php -y -n
