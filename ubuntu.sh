@@ -38,9 +38,6 @@ echo \
 # Various PHP versions
 sudo add-apt-repository ppa:ondrej/php -y -n
 
-# Node
-curl -sL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-
 # ElasticSearch 7
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
 echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
@@ -336,11 +333,11 @@ alias PHP84=\"sudo update-alternatives --set php /usr/bin/php8.4\"
 alias C1=\"sudo composer self-update --1\"
 alias C2=\"sudo composer self-update --2\"
 
-alias N14=\"sudo n 14\"
-alias N16=\"sudo n 16\"
-alias N18=\"sudo n 18\"
-alias N20=\"sudo n 20\"
-alias N22=\"sudo n 22\"
+alias N16=\"nvm install 16 && nvm use 16\"
+alias N18=\"nvm install 18 && nvm use 18\"
+alias N20=\"nvm install 20 && nvm use 20\"
+alias N22=\"nvm install 22 && nvm use 22\"
+alias N24=\"nvm install 24 && nvm use 24\"
 
 alias AP=\"sudo service apache2 restart\"
 alias NG=\"sudo service nginx restart\"
@@ -356,25 +353,15 @@ alias CC=\"php bin/magento cache:clean\"
 alias RI=\"php bin/magento indexer:reindex\"
 alias RS=\"php bin/magento indexer:status\"" | tee -a ~/.bash_aliases
 
-# Install Node Package Manager and set home directory as user-global folder
-    printf "\n>>> NPM is going to be installed >>>\n"
-sudo apt install nodejs -y
-mkdir ~/.npm-global
-npm config set prefix "${HOME}/.npm-global"
-echo "export PATH=\$PATH:~/.npm-global/bin" | tee -a ~/.bashrc
-
-# Install Grunt tasker
-    printf "\n>>> Grunt is going to be installed >>>\n"
-npm install -g grunt-cli
+# Install Node
+    printf "\n>>> Node is going to be installed >>>\n"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+\. "$HOME/.nvm/nvm.sh"
+nvm install 24
 
 # Install Yarn
     printf "\n>>> Yarn is going to be installed >>>\n"
 npm install -g yarn
-
-# Install N
-    printf "\n>>> N package is going to be installed >>>\n"
-npm install -g n
-sudo ln -s ~/.npm-global/bin/n /usr/local/bin/n # as n requires sudo access
 
 # Install ElasticSearch 7
     printf "\n>>> JDK and ElasticSearch 7 are going to be installed >>>\n"

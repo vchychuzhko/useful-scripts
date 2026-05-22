@@ -37,7 +37,7 @@ Development:
 - Git
 - PHP (8.0-8.4)
 - Composer
-- Node 22 + [n](https://www.npmjs.com/package/n) (to switch versions, 14-22 by default)
+- Node 24 + [nvm](https://www.nvmnode.com/) (to switch versions, 16-24 by default)
 - MySQL Client (8.0 + MariaDB 10.11)
 - Redis Server
 - Elasticsearch 7
@@ -132,7 +132,7 @@ Several useful aliases were added to the `~/.bash_aliases` file:
 
 | Alias | Description                                                         |
 |:-----:|---------------------------------------------------------------------|
-| N[X]  | Switch Node to [X version](#installed-software) of Node, e.g. `N20` |
+| N[X]  | Switch Node to [X version](#installed-software) of Node, e.g. `N22` |
 
 ### Magento
 
