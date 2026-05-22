@@ -29,12 +29,9 @@ sudo add-apt-repository ppa:ondrej/php -y -n
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
 echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
 
-# KeePassXC
-sudo add-apt-repository ppa:phoerious/keepassxc -y -n
-
 # Sublime Text
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo tee /etc/apt/keyrings/sublimehq-pub.asc > /dev/null
+echo -e 'Types: deb\nURIs: https://download.sublimetext.com/\nSuites: apt/stable/\nSigned-By: /etc/apt/keyrings/sublimehq-pub.asc' | sudo tee /etc/apt/sources.list.d/sublime-text.sources
 
     printf "\n>>> Running system upgrade >>>\n"
 sudo apt update
@@ -418,7 +415,7 @@ sudo apt install obs-studio -y
 
 # Install KeePassXC
     printf "\n>>> KeePassXC is going to be installed >>>\n"
-sudo apt install keepassxc -y
+sudo snap install keepassxc
 
 # Install Slack
     printf "\n>>> Slack is going to be installed >>>\n"
