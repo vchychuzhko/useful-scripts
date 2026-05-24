@@ -34,7 +34,7 @@ Development:
 - PHP (8.0-8.4)
 - Composer
 - Node 24 + [nvm](https://www.nvmnode.com/) (to switch versions, 16-24 by default)
-- MySQL Client (8.0 + MariaDB 10.11)
+- MySQL 8.0 + MariaDB 10.11, 11.8
 - Redis
 - Elasticsearch 7
 - Docker

@@ -67,7 +67,7 @@ echo "# docker compose up -d --build --force-recreate
 services:
   mysql80:
     container_name: mysql80
-    image: mysql:8.0
+    image: mysql:8
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
@@ -80,27 +80,42 @@ services:
 
   mariadb10:
     container_name: mariadb10
-    image: bitnami/mariadb:10.11
+    image: mariadb:10.11
     user: root
     restart: always
     environment:
       - MARIADB_ROOT_USER=root
       - MARIADB_ROOT_PASSWORD=root
     volumes:
-      - ./mariadb10_databases:/bitnami/mariadb
+      - ./mariadb10_databases:/var/lib/mysql
       - ./my.cnf:/etc/my.cnf
     ports:
       - 3310:3306
 
+  mariadb11:
+    container_name: mariadb11
+    image: mariadb:11.8
+    user: root
+    restart: always
+    environment:
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - ./mariadb11_databases:/var/lib/mysql
+      - ./my.cnf:/etc/my.cnf
+    ports:
+      - 3311:3306
+
   phpmyadmin:
     container_name: phpmyadmin
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin
     restart: always
     depends_on:
       - mysql80
       - mariadb10
+      - mariadb11
     environment:
-      - PMA_HOSTS=mysql80,mariadb10
+      - PMA_HOSTS=mysql80,mariadb10,mariadb11
       - PMA_USER=root
       - PMA_PASSWORD=root
     volumes:
@@ -108,6 +123,7 @@ services:
     links:
       - mysql80:mysql80
       - mariadb10:mariadb10
+      - mariadb11:mariadb11
     ports:
       - 8080:80
 " > ./docker-compose.yml
