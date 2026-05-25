@@ -18,7 +18,7 @@ curl -fsSL https://raw.githubusercontent.com/vchychuzhko/useful-scripts/refs/hea
 - [Post-installation tips](#post-installation-tips)
   - [Shortcuts](#shortcuts)
   - [Bash Profile](#bash-profile)
-  - [Dual-Boot Time Issue](#dual-boot-time-issue)
+  - [Dual-Boot Time Issue](#dual-boot-timezone-issue)
 - [Database Deploy](#database-deploy)
 - [Aliases](#aliases)
   - [PHP](#php)
@@ -80,7 +80,7 @@ Add them in Settings: Keyboard > View and Customize Shortcuts > Custom Shortcuts
 
 ### Bash Profile
 
-You can customize terminal output to show current Git branch when you're inside the repository.  
+You can customize terminal output to show the current Git branch when you're inside the repository.  
 Find and update respective block in `~/.bashrc`:
 
 ```bash
@@ -94,12 +94,12 @@ else
     ...
 ```
 
-### Dual-Boot Time Issue
+### Dual-Boot TimeZone Issue
 
-In case of dual-boot setup with Windows, run this command after installation to fix time sliding issue:
+In the case of dual-boot setup with Windows, run this in administrator PowerShell and reboot:
 
-```bash
-timedatectl set-local-rtc 1
+```powershell
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" -Name "RealTimeIsUniversal" -Type DWord -Value 1
 ```
 
 ## Recommended Extensions
