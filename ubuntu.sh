@@ -48,7 +48,7 @@ curl -fsSL https://get.docker.com | sudo sh
 sudo usermod -aG docker ${USER}
 
 # Install MySQL client and MySQL Docker images
-    printf "\n>>> MySQL 8.0, MariaDB 10.11 and phpMyAdmin are going to be installed with docker compose >>>\n"
+    printf "\n>>> MySQL, MariaDB and phpMyAdmin are going to be installed with docker compose >>>\n"
 sudo apt install mysql-client -y
 
 mkdir -p ~/misc/db/docker_mysql
@@ -67,7 +67,7 @@ echo "# docker compose up -d --build --force-recreate
 services:
   mysql80:
     container_name: mysql80
-    image: mysql:8
+    image: mysql:8.0
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
@@ -77,6 +77,18 @@ services:
       - ./my.cnf:/etc/my.cnf
     ports:
       - 3380:3306
+  mysql84:
+    container_name: mysql84
+    image: mysql:8.4
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASS=root
+    volumes:
+      - ./mysql84_databases:/var/lib/mysql
+      - ./my.cnf:/etc/my.cnf
+    ports:
+      - 3384:3306
 
   mariadb10:
     container_name: mariadb10
@@ -91,7 +103,6 @@ services:
       - ./my.cnf:/etc/my.cnf
     ports:
       - 3310:3306
-
   mariadb11:
     container_name: mariadb11
     image: mariadb:11.8
@@ -105,6 +116,19 @@ services:
       - ./my.cnf:/etc/my.cnf
     ports:
       - 3311:3306
+  mariadb12:
+    container_name: mariadb12
+    image: mariadb:12.3
+    user: root
+    restart: always
+    environment:
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - ./mariadb12_databases:/var/lib/mysql
+      - ./my.cnf:/etc/my.cnf
+    ports:
+      - 3312:3306
 
   phpmyadmin:
     container_name: phpmyadmin
@@ -112,24 +136,28 @@ services:
     restart: always
     depends_on:
       - mysql80
+      - mysql84
       - mariadb10
       - mariadb11
+      - mariadb12
     environment:
-      - PMA_HOSTS=mysql80,mariadb10,mariadb11
+      - PMA_HOSTS=mysql80,mysql84,mariadb10,mariadb11,mariadb12
       - PMA_USER=root
       - PMA_PASSWORD=root
     volumes:
       - /sessions
     links:
       - mysql80:mysql80
+      - mysql84:mysql84
       - mariadb10:mariadb10
       - mariadb11:mariadb11
+      - mariadb12:mariadb12
     ports:
       - 8080:80
 " > ./docker-compose.yml
 # Run docker-compose this way because we need not to log out in order to refresh permissions
 sudo docker compose up -d
-    printf "\n>>> MySQL 8.0 and MariaDB 10.11 along with phpMyAdmin were installed successfully! >>>\n"
+    printf "\n>>> MySQL and MariaDB along with phpMyAdmin were installed successfully! >>>\n"
 
 # Install Nginx web server
     printf "\n>>> Nginx is going to be installed: >>>\n"
@@ -342,7 +370,10 @@ alias ES=\"sudo service elasticsearch restart\"
 alias ESOFF=\"sudo service elasticsearch stop\"
 
 alias MY80=\"mysql -uroot -proot -h127.0.0.1 --port=3380 --show-warnings\"
-alias MA10=\"mysql -uroot -proot -h127.0.0.1 --port=3310 --show-warnings\"
+alias MY84=\"mysql -uroot -proot -h127.0.0.1 --port=3384 --show-warnings\"
+alias MD10=\"mysql -uroot -proot -h127.0.0.1 --port=3310 --show-warnings\"
+alias MD11=\"mysql -uroot -proot -h127.0.0.1 --port=3311 --show-warnings\"
+alias MD12=\"mysql -uroot -proot -h127.0.0.1 --port=3312 --show-warnings\"
 
 alias SU=\"php bin/magento setup:upgrade\"
 alias DI=\"php bin/magento setup:di:compile\"

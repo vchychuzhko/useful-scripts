@@ -34,7 +34,9 @@ Development:
 - PHP (8.0-8.4)
 - Composer
 - Node 24 + [nvm](https://www.nvmnode.com/) (to switch versions, 16-24 by default)
-- MySQL 8.0 + MariaDB 10.11, 11.8
+- MySQL 8.0, 8.4
+- MariaDB 10.11, 11.8, 12.3
+- phpMyAdmin - http://127.0.0.1:8080/
 - Redis
 - Elasticsearch 7
 - Docker
@@ -123,6 +125,13 @@ Several useful aliases were added to the `~/.bash_aliases` file:
 | C[1,2] | Switch Composer version, e.g. `C2`                                  |
 |   XD   | Toggle Xdebug for FPM and CLI environments                          |
 
+### Database
+
+| Alias  | Description                                                       |
+|:------:|-------------------------------------------------------------------|
+| MY8[X] | Login to [X version](#installed-software) of MySQL, e.g. `MY84`   |
+| MD1[X] | Login to [X version](#installed-software) of MariaDB, e.g. `MD11` |
+
 ### Node
 
 | Alias | Description                                                         |
@@ -136,19 +145,17 @@ Several useful aliases were added to the `~/.bash_aliases` file:
 |  SU   | `php bin/magento setup:upgrade`    |
 |  DI   | `php bin/magento setup:di:compile` |
 |  CC   | `php bin/magento cache:clean`      |
-|  RI   | `php bin/magento indexer:reindex`  |
 |  RS   | `php bin/magento indexer:status`   |
+|  RI   | `php bin/magento indexer:reindex`  |
 
 ### Other
 
-|  Alias   | Description                         |
-|:--------:|-------------------------------------|
-|   MY80   | Login to MySQL container as admin   |
-|   MA10   | Login to MariaDB container as admin |
-|    AP    | Restart Apache                      |
-|    NG    | Restart Nginx                       |
-|    ES    | Start/Restart Elasticsearch         |
-|  ESOFF   | Stop Elasticsearch                  |
+| Alias | Description                 |
+|:-----:|-----------------------------|
+|  AP   | Restart Apache              |
+|  NG   | Restart Nginx               |
+|  ES   | Start/Restart Elasticsearch |
+| ESOFF | Stop Elasticsearch          |
 
 ### Custom
 
