@@ -19,6 +19,7 @@ curl -fsSL https://raw.githubusercontent.com/vchychuzhko/useful-scripts/refs/hea
   - [Shortcuts](#shortcuts)
   - [Bash Profile](#bash-profile)
   - [Dual-Boot Time Issue](#dual-boot-timezone-issue)
+  - [Recommended Extensions](#recommended-extensions)
 - [Database Deploy](#database-deploy)
 - [Aliases](#aliases)
   - [PHP](#php)
@@ -161,7 +162,7 @@ Several useful aliases were added to the `~/.bash_aliases` file:
 
 |        Alias         | Description                                                                                                 |
 |:--------------------:|-------------------------------------------------------------------------------------------------------------|
-|   CERT example.com   | Generate SSL certificate for `example.com`, including `www.example.com`                                     |
+|   CERT example.com   | Generate SSL certificate for `example.com`, you can provide multiple related domains                        |
 | NGENSITE example.com | Links Nginx configuration for `example.com` into `sites-enabled` folder, enabling the config file inclusion |
 
 ---

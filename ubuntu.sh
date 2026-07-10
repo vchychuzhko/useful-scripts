@@ -318,7 +318,7 @@ export XDEBUG_MODE=debug
 
 cert_function() {
   mkdir -p ~/misc/ssl/\$1
-  mkcert -key-file ~/misc/ssl/\$1/\$1+1-key.pem -cert-file ~/misc/ssl/\$1/\$1+1.pem \$1 www.\$1
+  mkcert -key-file ~/misc/ssl/\$1/\$1-key.pem -cert-file ~/misc/ssl/\$1/\$1.pem \$1 \${@:2}
 }
 
 nginx_function() {
@@ -406,12 +406,9 @@ rm google-chrome-stable_current_amd64.deb
     printf "\n>>> Epiphany Web Browser is going to be installed >>>\n"
 sudo apt install epiphany-browser -y
 
-# Install mkcert - https://github.com/FiloSottile/mkcert/releases
+# Install mkcert
     printf "\n>>> mkcert is going to be installed >>>\n"
-sudo apt install libnss3-tools -y
-curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
-chmod +x mkcert-v*-linux-amd64
-sudo mv mkcert-v*-linux-amd64 /usr/local/bin/mkcert
+sudo apt install libnss3-tools mkcert -y
 mkcert -install
 
 # Install Guake
@@ -442,8 +439,8 @@ sudo apt install pv -y
     printf "\n>>> Git and Git Gui are going to be installed >>>\n"
 sudo apt install git git-gui -y
 
-# Install Redis cache system
-    printf "\n>>> Redis cache system is going to be installed >>>\n"
+# Install Redis
+    printf "\n>>> Redis is going to be installed >>>\n"
 sudo apt install redis-server -y
 sudo sed -i 's/^supervised no/supervised systemd/g' /etc/redis/redis.conf
 sudo service redis restart
