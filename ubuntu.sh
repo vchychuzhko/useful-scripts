@@ -1,4 +1,6 @@
 #!/bin/sh
+# fail on error
+set -e
 # sudo access will be requested if the script was not run with sudo or under root user
 sudo -k
 
@@ -471,7 +473,7 @@ sudo snap install telegram
 
 # Install Virt Manager
     printf "\n>>> Virt Manager is going to be installed >>>\n"
-sudo apt install virt-manager -y
+sudo apt install virt-manager virtiofsd -y
 
 # Install PhpStorm
     printf "\n>>> PhpStorm is going to be installed >>>\n"
