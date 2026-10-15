@@ -1,13 +1,13 @@
 # Useful Scripts
 
-Set of tools to be used on new system setup for Ubuntu 24.04
+Set of developer tools to be used on new system setup for Ubuntu 26.04
 
 ## Running the script
 
-Environment installation script for Ubuntu 24.04:
+Environment installation script for Ubuntu 26.04:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vchychuzhko/useful-scripts/refs/heads/master/ubuntu.sh | bash
+curl -fsSL https://vchychuzhko.github.io/useful-scripts/ubuntu.sh | bash
 ```
 
 **Important:** do not run this with `sudo` or when you are switched to the root user.
@@ -32,12 +32,12 @@ curl -fsSL https://raw.githubusercontent.com/vchychuzhko/useful-scripts/refs/hea
 
 Development:
 - Git
-- PHP (8.0-8.4)
+- PHP 8.4 (8.0-8.5) + FPM
 - Composer
 - Node 24 + [nvm](https://www.nvmnode.com/) (to switch versions, 16-24 by default)
 - MySQL 8.0, 8.4
 - MariaDB 10.11, 11.8, 12.3
-- phpMyAdmin - http://127.0.0.1:8080/
+- phpMyAdmin - http://127.0.0.1:8080
 - Redis
 - Elasticsearch 7
 - Docker
@@ -77,9 +77,9 @@ etc:
 You can add shortcuts for installed programs to have immediate access.  
 Add them in Settings: Keyboard > View and Customize Shortcuts > Custom Shortcuts
 
-|         Program          | Command             | Suggested shortcut |
-|:------------------------:|---------------------|--------------------|
-|      Guake Terminal      | `/usr/bin/guake -t` | F1                 |
+|    Program     | Command             | Suggested shortcut |
+|:--------------:|---------------------|--------------------|
+| Guake Terminal | `/usr/bin/guake -t` | F1                 |
 
 ### Bash Profile
 

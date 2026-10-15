@@ -24,8 +24,11 @@ mkdir -p ~/Templates
 touch ~/Templates/Untitled\ Document
 
     printf "\n>>> Adding repositories and updating software list >>>\n"
-# Various PHP versions
-sudo add-apt-repository ppa:ondrej/php -y -n
+# Various PHP versions - https://packages.sury.org/php/README.txt
+sudo apt-get install lsb-release ca-certificates -y
+sudo curl -sSLo /tmp/debsuryorg-archive-keyring.deb https://packages.sury.org/debsuryorg-archive-keyring.deb
+sudo dpkg -i /tmp/debsuryorg-archive-keyring.deb
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 
 # ElasticSearch 7
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
@@ -238,12 +241,17 @@ sudo apt install php8.3-bz2 php8.3-bcmath php8.3-curl php8.3-gd php8.3-imap php8
 sudo apt install php8.4 php8.4-cli php8.4-common php8.4-opcache php8.4-readline --no-install-recommends -y
 sudo apt install php8.4-bz2 php8.4-bcmath php8.4-curl php8.4-gd php8.4-imap php8.4-intl php8.4-mbstring php8.4-mysql php8.4-soap php8.4-xdebug php8.4-xml php8.4-xmlrpc php8.4-zip php8.4-fpm -y
 
+# Install PHP 8.5 and modules
+    printf "\n>>> PHP 8.5 and common modules are going to be installed >>>\n"
+sudo apt install php8.5 php8.5-cli php8.5-common php8.5-readline --no-install-recommends -y
+sudo apt install php8.5-bz2 php8.5-bcmath php8.5-curl php8.5-gd php8.5-imap php8.5-intl php8.5-mbstring php8.5-mysql php8.5-soap php8.5-xdebug php8.5-xml php8.5-xmlrpc php8.5-zip php8.5-fpm -y
+
     printf "\n>>> Creating ini files for the development environment >>>\n"
 IniDirs=/etc/php/*/*/conf.d/
 for IniDir in ${IniDirs};
 do
     printf "Creating ${IniDir}/999-custom-config.ini\n"
-sudo rm ${IniDir}999-custom-config.ini
+sudo rm -f ${IniDir}999-custom-config.ini
 echo "error_reporting=E_ALL & ~E_DEPRECATED
 display_errors=On
 display_startup_errors=On
@@ -290,9 +298,9 @@ echo "memory_limit=2G
 " | sudo tee -a ${IniDir}999-custom-config.ini
 done
 
-# Set default PHP version to 8.3
-    printf "Enabling PHP 8.3 by default"
-sudo update-alternatives --set php /usr/bin/php8.3
+# Set default PHP version to 8.4
+    printf "Enabling PHP 8.4 by default"
+sudo update-alternatives --set php /usr/bin/php8.4
 
     printf "\n>>> Configuring php modules >>>\n"
 sudo phpenmod mbstring
@@ -341,7 +349,7 @@ xdebug_function() {
     echo \"Xdebug is ON\"
   fi
 
-  for version in 8.0 8.1 8.2 8.3 8.4
+  for version in 8.0 8.1 8.2 8.3 8.4 8.5
   do
     sudo service php\$version-fpm restart
   done
@@ -356,6 +364,14 @@ alias PHP81=\"sudo update-alternatives --set php /usr/bin/php8.1\"
 alias PHP82=\"sudo update-alternatives --set php /usr/bin/php8.2\"
 alias PHP83=\"sudo update-alternatives --set php /usr/bin/php8.3\"
 alias PHP84=\"sudo update-alternatives --set php /usr/bin/php8.4\"
+alias PHP85=\"sudo update-alternatives --set php /usr/bin/php8.5\"
+
+alias FPM80=\"sudo service php8.0-fpm restart\"
+alias FPM81=\"sudo service php8.1-fpm restart\"
+alias FPM82=\"sudo service php8.2-fpm restart\"
+alias FPM83=\"sudo service php8.3-fpm restart\"
+alias FPM84=\"sudo service php8.4-fpm restart\"
+alias FPM85=\"sudo service php8.5-fpm restart\"
 
 alias C1=\"sudo composer self-update --1\"
 alias C2=\"sudo composer self-update --2\"
